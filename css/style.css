@@ -41,6 +41,13 @@ header {
   margin-top: 50px;
 }
 
+.noselect {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
 .container {
   position: relative;
   max-width: 960px;

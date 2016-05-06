@@ -1,0 +1,123 @@
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
+  line-height: 1.6;
+  color: #444;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+#wrapper {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  width: auto;
+  height: auto;
+}
+
+#content {
+  margin-top: 60px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: normal;
+  line-height: 1.2;
+}
+
+
+input[type=file] {
+  border: none;
+  background: none;
+}
+
+header {
+  margin-top: 50px;
+}
+
+.container {
+  position: relative;
+  max-width: 960px;
+  margin: auto;
+}
+
+h1 {
+  font-size: 2.4em;
+}
+
+h1 > span {
+  font-size: 0.7em;
+  font-weight: normal;
+}
+
+#dropzone {
+  position: relative;
+  display: inline-block;
+  background: #f5f5f5;
+  height: 360px;
+  width: 640px;
+  border: 1px #eee solid;
+  border-radius: 5px;
+  text-align: center;
+  color: #777;
+  font-size: 1.2em;
+  padding-top: 135px;
+  -webkit-transition: all 0.12s ease-out;
+  -o-transition: all 0.12s ease-out;
+  transition: all 0.12s ease-out;
+}
+
+#inputfiles {
+  display: inline-block;
+  cursor: pointer;
+  font-size: 1.4em;
+  font-weight: bold;
+  -webkit-transition: all 0.12s ease-out;
+  -o-transition: all 0.12s ease-out;
+  transition: all 0.12s ease-out;
+}
+
+#inputfiles:hover {
+  -webkit-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  -o-transform: scale(1.2);
+  transform: scale(1.2);
+  color: #555;
+}
+
+#loaded {
+  display: inline-block;
+  position: absolute;
+  top: 0; right: 0;
+  width: 300px;
+}
+
+#loaded h3 {
+  margin: 0;
+  padding: 14px 0px;
+  border-bottom: 1px #777 solid;
+}
+
+#loaded ul {
+  overflow-y: auto;
+  overflow-x: hidden;
+  max-height: 306px;
+  margin: 0;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+#loaded li {
+  word-wrap: break-word;
+}
+
+#load_panel {
+  position: relative;
+  overflow: hidden;
+}

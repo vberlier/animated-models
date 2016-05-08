@@ -193,6 +193,10 @@ h1 > span {
   padding-top: 30px;
 }
 
+#loaded .noFileLoaded {
+  color: #aaa;
+}
+
 #load_panel {
   position: relative;
   overflow: hidden;

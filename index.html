@@ -59,7 +59,7 @@
               <h4>Models: {{modelsList.length}}</h4>
               <ul ng-switch="modelsList.length">
                 <div ng-switch-when="0">
-                  <li>No model loaded</li>
+                  <li class="noFileLoaded">No model loaded</li>
                 </div>
                 <div ng-switch-default>
                   <li ng-repeat="name in modelsList">{{name}} <span ng-click="remove(name, $flow)"><img src="images/delete.png" alt="delete"></span></li>
@@ -69,7 +69,7 @@
               <h4>Textures: {{texturesList.length}}</h4>
               <ul ng-switch="texturesList.length">
                 <div ng-switch-when="0">
-                  <li>No texture loaded</li>
+                  <li class="noFileLoaded">No texture loaded</li>
                 </div>
                 <div ng-switch-default>
                   <li ng-repeat="name in texturesList">{{name}} <span ng-click="remove(name, $flow)"><img src="images/delete.png" alt="delete"></span></li>

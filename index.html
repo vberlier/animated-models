@@ -63,7 +63,7 @@
                   <li class="noFileLoaded">No model loaded</li>
                 </div>
                 <div ng-switch-default>
-                  <li ng-repeat="name in modelsList">{{name}} <span ng-click="remove(name, $flow)"><img src="images/delete.png" alt="delete"></span></li>
+                  <li ng-repeat="name in modelsList">{{name}} <span ng-click="remove(name, $flow)" class="noselect"><img src="images/delete.png" alt="delete"></span></li>
                 </div>
               </ul>
 
@@ -73,7 +73,7 @@
                   <li class="noFileLoaded">No texture loaded</li>
                 </div>
                 <div ng-switch-default>
-                  <li ng-repeat="name in texturesList">{{name}} <span ng-click="remove(name, $flow)"><img src="images/delete.png" alt="delete"></span></li>
+                  <li ng-repeat="name in texturesList">{{name}} <span ng-click="remove(name, $flow)" class="noselect"><img src="images/delete.png" alt="delete"></span></li>
                 </div>
               </ul>
 

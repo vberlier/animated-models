@@ -47,8 +47,8 @@ app.controller('main', function($scope, $sce) {
 
     });
 
-    $scope.modelsList = Object.keys(models).sort();
-    $scope.texturesList = Object.keys(textures).sort();
+    $scope.modelsList = Object.keys(models).sort(alphanum);
+    $scope.texturesList = Object.keys(textures).sort(alphanum);
 
     $flow.files = files;
 

@@ -45,8 +45,8 @@ app.controller('main', function($scope, $sce) {
         errors.push('Can\'t load <strong>' + name + '</strong>, the file extension is invalid.')
       }
 
-      $scope.modelsList = Object.keys(models);
-      $scope.texturesList = Object.keys(textures);
+      $scope.modelsList = Object.keys(models).sort();
+      $scope.texturesList = Object.keys(textures).sort();
 
     });
 

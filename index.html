@@ -18,9 +18,9 @@
   </head>
   <body flow-prevent-drop>
 
-    <div id="wrapper">
+    <div id="wrapper" ng-controller="main">
 
-      <header>
+      <header id="header">
         <div class="container">
           <h1>
             Animated model generator - wip<br>
@@ -31,37 +31,75 @@
       </header>
 
       <!--MAIN-->
-      <div id="content" class="container" ng-controller="main">
+      <div id="content" class="container">
 
         <h2>Load ressources:</h2>
 
 
         <div id="load_panel">
 
-          <div id="dropzone" class="noselect" flow-drop flow-drag-enter="style={'background-color': '#ddd'}" flow-drag-leave="style={'background-color': '#f5f5f5'}" ng-style="style" flow-files-submitted="load($flow)">
+          <div id="load_left">
 
-            <span id="inputfiles" flow-btn>Input files</span><br>
-            <span>or just <strong>drag and drop</strong> them here</span>
+            <div id="dropzone" class="noselect" flow-drop flow-drag-enter="style={'background-color': '#ddd'}" flow-drag-leave="style={'background-color': '#f5f5f5'}" ng-style="style" flow-files-submitted="load($flow)">
+
+              <span id="inputfiles" flow-btn>Input files</span><br>
+              <span>or just <strong>drag and drop</strong> them here</span>
+
+            </div>
 
           </div>
 
 
           <div id="loaded">
-            <h3>Loaded files: ({{$flow.files.length}})</h3>
-            <ul ng-switch="$flow.files.length">
-              <div ng-switch-when="0">
-                <li>No file loaded</li>
-              </div>
-              <div ng-switch-default>
-                <li ng-repeat="file in $flow.files">{{file.name}}</li>
-              </div>
-            </ul>
+
+            <h3>Loaded files: {{modelsList.length + texturesList.length}}</h3>
+
+            <section>
+
+              <h4>Models: {{modelsList.length}}</h4>
+              <ul ng-switch="modelsList.length">
+                <div ng-switch-when="0">
+                  <li>No model loaded</li>
+                </div>
+                <div ng-switch-default>
+                  <li ng-repeat="name in modelsList">{{name}}</li>
+                </div>
+              </ul>
+
+              <h4>Textures: {{texturesList.length}}</h4>
+              <ul ng-switch="texturesList.length">
+                <div ng-switch-when="0">
+                  <li>No texture loaded</li>
+                </div>
+                <div ng-switch-default>
+                  <li ng-repeat="name in texturesList">{{name}}</li>
+                </div>
+              </ul>
+
+            </section>
+
           </div>
 
         </div>
 
       </div>
       <!--END OF MAIN-->
+
+      <div id="overlay" ng-show="modal.title">
+
+        <div id="modal">
+          <header>
+            <h3>{{modal.title}}</h3>
+          </header>
+          <div>
+            <ul>
+              <li ng-repeat="msg in modal.content" ng-bind-html="msg"></li>
+            </ul>
+          </div>
+          <footer><button ng-click="closeModal()">Close</button></footer>
+        </div>
+
+      </div>
 
     </div>
 

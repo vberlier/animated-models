@@ -37,7 +37,7 @@ input[type=file] {
   background: none;
 }
 
-header {
+#header {
   margin-top: 50px;
 }
 
@@ -50,8 +50,29 @@ header {
 
 .container {
   position: relative;
-  max-width: 960px;
+  width: 960px;
   margin: auto;
+}
+
+button {
+  display: inline-block;
+  padding: 10px 16px;
+  font-size: 0.9em;
+  background: #ddd;
+  border: none;
+  border-radius: 5px;
+  -webkit-transition: all 0.12s ease-out;
+  -o-transition: all 0.12s ease-out;
+  transition: all 0.12s ease-out;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #ccc;
+}
+
+:focus {
+  outline: none;
 }
 
 h1 {
@@ -63,7 +84,7 @@ h1 > span {
   font-weight: normal;
 }
 
-#dropzone {
+#load_left {
   position: relative;
   display: inline-block;
   background: #f5f5f5;
@@ -71,9 +92,20 @@ h1 > span {
   width: 640px;
   border: 1px #eee solid;
   border-radius: 5px;
+  overflow: hidden;
   text-align: center;
   color: #777;
   font-size: 1.2em;
+  -webkit-transition: all 0.12s ease-out;
+  -o-transition: all 0.12s ease-out;
+  transition: all 0.12s ease-out;
+}
+
+#dropzone {
+  position: relative;
+  background: #f5f5f5;
+  height: 100%;
+  width: 100%;
   padding-top: 135px;
   -webkit-transition: all 0.12s ease-out;
   -o-transition: all 0.12s ease-out;
@@ -111,20 +143,77 @@ h1 > span {
   border-bottom: 1px #777 solid;
 }
 
-#loaded ul {
+#loaded section {
   overflow-y: auto;
   overflow-x: hidden;
   max-height: 306px;
   margin: 0;
-  padding-top: 20px;
-  padding-bottom: 20px;
+  margin-left: 20px;
+  padding-bottom: 30px;
+}
+
+#loaded ul {
+  margin: 0;
 }
 
 #loaded li {
   word-wrap: break-word;
 }
 
+#loaded h4 {
+  margin: 0;
+  padding-top: 30px;
+}
+
 #load_panel {
   position: relative;
   overflow: hidden;
+}
+
+#overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  width: auto;
+  height: auto;
+  z-index: 100;
+  background-color: rgba(120, 120, 120, 0.2);
+}
+
+#modal {
+  position: relative;
+  width: 640px;
+  margin: auto;
+  margin-top: 220px;
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 32px;
+  box-shadow: 0px 3px 8px -2px rgba(0, 0, 0, 0.4);
+}
+
+#modal h3 {
+  margin: 0;
+}
+
+#modal header {
+  padding: 12px 0px;
+  border-bottom: 1px #777 solid;
+}
+
+#modal div {
+  padding: 24px 0px;
+  max-height: 340px;
+  overflow-x: auto;
+}
+
+#modal ul {
+  margin: 0;
+}
+
+#modal li {
+  padding: 2px 0px;
+}
+
+#modal footer {
+  margin-top: 30px;
+  text-align: right;
 }

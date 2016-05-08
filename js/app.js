@@ -1,32 +1,68 @@
 
 var app = angular.module('app', ['flow']);
 
-app.controller('main', function($scope) {
 
+app.controller('main', function($scope, $sce) {
+
+  // modal stuff
+  $scope.modal = {
+    title: '',
+    content: []
+  }
+
+  $scope.closeModal = function() {
+    $scope.modal = {
+      title: '',
+      content: []
+    }
+  }
+
+  $scope.modelsList = [];
+  $scope.texturesList = [];
+
+  // called when files are loaded
   $scope.load = function($flow) {
 
-    files = $flow.files;
+    var files = [];
+    var errors = [];
 
-    $scope.models = {};
-    $scope.textures = {};
+    var models = {};
+    var textures = {};
 
-    $flow.files = files.filter(function(value){
-      return value.name.toLowerCase().endsWith('.json') || value.name.toLowerCase().endsWith('.png')
-    });
+    // filter models and textures
+    $flow.files.forEach(function(file, index) {
 
-    files = $flow.files;
+      var name = file.name;
+      var len = name.length;
 
-    $flow.files = files.sort(function(a, b) {
-      var a = a.name;
-      var b = b.name;
-      if ((a.toLowerCase().endsWith('.json') && b.toLowerCase().endsWith('.json')) || (a.toLowerCase().endsWith('.png') && b.toLowerCase().endsWith('.png'))) {
-        return [a, b].sort()[0] == a ? -1 : 1;
+      if (name.toLowerCase().substr(len-5, len-1) == '.json') {
+        models[name] = file;
+        files.push(file);
+      } else if (name.toLowerCase().substr(len-4, len-1) == '.png') {
+        textures[name] = file;
+        files.push(file);
       } else {
-        return a.toLowerCase().endsWith('.json') ? -1 : 1;
+        errors.push('Can\'t load <strong>' + name + '</strong>, the file extension is invalid.')
       }
+
+      $scope.modelsList = Object.keys(models);
+      $scope.texturesList = Object.keys(textures);
+
     });
 
-    files = $flow.files;
+    $flow.files = files;
+
+    // display errors
+    if (errors.length > 0) {
+      var modal = {
+        title: 'An error occured while loading resources.',
+        content: []
+      };
+      errors.forEach(function(msg) {
+        modal.content.push($sce.trustAsHtml(msg));
+      });
+      $scope.modal = modal;
+    }
 
   };
 

@@ -21,7 +21,7 @@ app.controller('main', function($scope, $sce) {
   $scope.texturesList = [];
 
   // called when files are loaded
-  $scope.load = function($flow) {
+  $scope.update = function($flow) {
 
     var files = [];
     var errors = [];
@@ -45,10 +45,10 @@ app.controller('main', function($scope, $sce) {
         errors.push('Can\'t load <strong>' + name + '</strong>, the file extension is invalid.')
       }
 
-      $scope.modelsList = Object.keys(models).sort();
-      $scope.texturesList = Object.keys(textures).sort();
-
     });
+
+    $scope.modelsList = Object.keys(models).sort();
+    $scope.texturesList = Object.keys(textures).sort();
 
     $flow.files = files;
 
@@ -65,5 +65,14 @@ app.controller('main', function($scope, $sce) {
     }
 
   };
+
+  // remove files
+  $scope.remove = function(name, $flow) {
+    files = $flow.files.filter(function(file) {
+      return file.name != name;
+    });
+    $flow.files = files;
+    $scope.update($flow);
+  }
 
 });

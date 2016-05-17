@@ -7,6 +7,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
     <script src="js/ng-flow-standalone.min.js"></script>
     <script src="js/alphanum.js"></script>
+    <script src="js/utils.js"></script>
     <script src="js/app.js"></script>
 
     <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
@@ -63,7 +64,7 @@
                   <li class="noFileLoaded">No model loaded</li>
                 </div>
                 <div ng-switch-default>
-                  <li ng-repeat="name in modelsList">{{name}} <span ng-click="remove(name, $flow)" class="noselect"><img src="images/delete.png" alt="delete"></span></li>
+                  <li ng-repeat="name in modelsList">{{name}} <span ng-click="remove(name, $flow)" class="noselect" title="delete model"><img src="images/delete.png" alt="delete"></span></li>
                 </div>
               </ul>
 
@@ -73,7 +74,7 @@
                   <li class="noFileLoaded">No texture loaded</li>
                 </div>
                 <div ng-switch-default>
-                  <li ng-repeat="name in texturesList">{{name}} <span ng-click="remove(name, $flow)" class="noselect"><img src="images/delete.png" alt="delete"></span></li>
+                  <li ng-repeat="name in texturesList">{{name}} <span ng-click="remove(name, $flow)" class="noselect" title="delete texture"><img src="images/delete.png" alt="delete"></span></li>
                 </div>
               </ul>
 

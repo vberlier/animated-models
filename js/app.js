@@ -102,7 +102,7 @@ app.controller('main', function($scope, $sce) {
           var result = JSON.parse(this.result);
           loaded.models.push({
             name: modelName,
-            data: result
+            data: checkModelStructure(result)
           });
         } catch (e) {
           // if there's an error, remove the file from the selection and it's name from the models list
@@ -116,6 +116,10 @@ app.controller('main', function($scope, $sce) {
           if (e instanceof SyntaxError) {
             // push a new error with the details (which are browser specific)
             $scope.errors.push('Can\'t load model <strong>' + modelName + '</strong>, json parsing failed. ' + e.message.trim().split(' in JSON ').join(' ') + '.');
+          } else if (e instanceof ModelStructureError) {
+            e.message.split(' | ').forEach(function(message) {
+              $scope.errors.push('Error in model <strong>' + modelName + '</strong>, model structure is invalid. ' + message + '.');
+            })
           } else {
             // throw the exception if it's anything else
             throw e;

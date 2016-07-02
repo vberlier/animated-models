@@ -12,8 +12,20 @@
   </head>
   <body>
 
+    <!-- svg reference -->
+    <svg xmlns="http://www.w3.org/2000/svg" class="hidden">
+
+      <symbol id="svg-file" viewBox="0 0 24 24" width="24" height="24">
+        <path d="M6 2c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6H6zm7 7V3.5L18.5 9H13z" fill="currentColor"/>
+        <path d="M0 0h24v24H0z" fill="none"/>
+      </symbol>
+
+    </svg>
+
+    <!-- page wrapper -->
     <div id="wrapper">
 
+      <!-- topbar -->
       <div id="topbar">
         <div class="relative">
 
@@ -26,18 +38,22 @@
         </div>
       </div>
 
+      <!-- body -->
       <div id="main">
         <div class="relative">
           <div id="top">
             <div class="relative">
 
+              <!-- frames section -->
               <div id="left">
                 <div class="relative">
 
                   <div id="frames-sidebar">
                     <div class="relative">
 
-
+                      <div class="frames-sidebar-element">
+                        <a id="frames-sidebar-loadFrames" class="basic" title="Load resources"><svg><use xlink:href="index.html#svg-file"></svg></a>
+                      </div>
 
                     </div>
                   </div>
@@ -53,13 +69,14 @@
                 </div>
               </div>
 
+              <!-- viewer section -->
               <div id="right">
                 <div class="relative">
 
                   <div id="viewer-window">
                     <div class="relative">
 
-                      <div id="viewer">
+                      <div id="viewer" class="noselect">
 
                         <!-- Model viewer -->
 
@@ -84,10 +101,62 @@
             </div>
           </div>
 
+          <!-- timeline section -->
           <div id="bottom">
             <div class="relative">
 
+              <div id="timeline">
+                <div class="relative">
 
+
+
+                </div>
+              </div>
+
+              <div id="timeline-options">
+                <div class="relative">
+
+
+
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- overlay & modal -->
+      <div id="overlay" class="hidden">
+        <div class="relative">
+
+          <div id="modal">
+            <div class="relative">
+
+              <div id="modal-body">
+                <div class="relative">
+
+                  <h2 id="modal-title">
+                    Load resources
+                  </h2>
+
+                </div>
+              </div>
+
+              <div id="modal-footer">
+                <div class="relative">
+
+                  <div class="modal-footer-element">
+                    <button id="modal-close" class="basic" type="button">Close</button>
+                  </div>
+
+                  <div class="modal-footer-element">
+                    <button id="modal-load" type="button">Load</button>
+                  </div>
+
+                </div>
+              </div>
 
             </div>
           </div>
@@ -96,6 +165,7 @@
       </div>
 
     </div>
+    <!-- end of wrapper -->
 
     <!-- JQuery -->
     <script src="js/libs/jquery.min.js" charset="utf-8"></script>

@@ -25,5 +25,49 @@ $(document).ready(function() {
     viewer.reset()
   })
 
+  $('#frames-sidebar-loadFrames').click(function(event) {
+    event.stopPropagation()
+    modal.show()
+  })
+
+  $('#overlay').click(function(event) {
+    event.stopPropagation()
+    modal.hide()
+  })
+  $('#modal').click(function(event) {
+    event.stopPropagation()
+  })
+
+  $('#modal-close').click(function(event) {
+    event.stopPropagation()
+    modal.hide()
+  })
+
 
 })
+
+
+
+var modal = {
+
+  show: function() {
+
+    $('#overlay').removeClass('hidden')
+    modal.reset()
+
+  },
+
+  hide: function() {
+
+    $('#overlay').addClass('hidden')
+    modal.reset()
+
+  },
+
+  reset: function() {
+
+    console.log('reset')
+
+  }
+
+}

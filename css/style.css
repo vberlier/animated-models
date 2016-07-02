@@ -17,6 +17,7 @@ body {
 }
 
 #wrapper, .relative {
+  display: block;
   position: relative;
   width: 100%;
   height: 100%;
@@ -24,20 +25,106 @@ body {
 }
 
 
+
 /**
  *  generic
  *****************************/
 
 a {
-  color: #28a6ed;
+  color: #5ca8d9;
   text-decoration: none;
-  -webkit-transform: color 0.2s ease-out;
-  -ms-transform: color 0.2s ease-out;
-  -o-transform: color 0.2s ease-out;
-  transform: color 0.2s ease-out;
+  -webkit-transition: color 0.2s ease-out;
+  -o-transition: color 0.2s ease-out;
+  transition: color 0.2s ease-out;
   cursor: pointer;
 }
-a:hover { color: #3f70cf; }
+a:hover { color: #347eaf; }
+
+a.basic { color: #c2c2c2; }
+a.basic:hover { color: #afafaf; }
+
+button {
+  background: #5ca8d9;
+  color: #fff;
+  border: none;
+  font-size: 1.1em;
+  padding: 0.6em 1.2em;
+  border-radius: 4px;
+  -webkit-transition: background 0.2s ease-out;
+  -o-transition: background 0.2s ease-out;
+  transition: background 0.2s ease-out;
+  cursor: pointer;
+}
+button:hover { background: #347eaf; }
+
+button.basic { background: #e3e3e3; color: #777; }
+button.basic:hover { background: #d3d3d3; }
+
+.hidden { display: none; }
+
+:focus { outline: none; }
+
+.noselect {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+svg {
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+
+
+/**
+ *  modal & overlay
+ *****************************/
+
+#overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  width: auto;
+  height: auto;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+#modal {
+  position: absolute;
+  top: 10%;
+  left: 0; right: 0;
+  width: 860px;
+  height: 580px;
+  margin: auto;
+  background: #fff;
+  border-radius: 3px;
+  box-shadow: 0px 1px 8px -2px rgba(0,0,0,0.4);
+  padding: 54px;
+  box-sizing: border-box;
+}
+
+/* Sizing */
+#modal-body, #modal-footer {
+  position: absolute;
+  left: 0; right: 0;
+  width: auto;
+  box-sizing: border-box;
+}
+#modal-body { top: 0; bottom: 2.6em; height: auto; }
+#modal-footer { height: 2.6em; bottom: 0; }
+
+#modal h2 {
+  font-size: 1.4em;
+  font-weight: normal;
+  margin: 0;
+}
+.modal-footer-element { float: right; margin-left: 1em; }
+
 
 
 /**
@@ -57,7 +144,6 @@ a:hover { color: #3f70cf; }
 /* topbar */
 #topbar {
   border-bottom: 1px #cfcfcf solid;
-  box-shadow: 0px 1px 8px -2px rgba(0,0,0,0.4);
   background: #fff;
 }
 
@@ -73,6 +159,7 @@ a:hover { color: #3f70cf; }
   font-weight: normal;
   margin: 0;
 }
+
 
 
 /**
@@ -94,6 +181,7 @@ a:hover { color: #3f70cf; }
 #bottom { border-top: 1px #cfcfcf solid; }
 
 
+
 /**
  *  left & right
  *****************************/
@@ -113,6 +201,7 @@ a:hover { color: #3f70cf; }
 #left { border-right: 1px #cfcfcf solid; }
 
 
+
 /**
  *  frames
  *****************************/
@@ -129,6 +218,14 @@ a:hover { color: #3f70cf; }
 
 /* sidebar section */
 #frames-sidebar { border-right: 1px #cfcfcf solid; }
+
+.frames-sidebar-element {
+  position: relative;
+  height: 80px;
+  padding: 12px;
+  box-sizing: border-box;
+}
+
 
 
 /**
@@ -173,6 +270,26 @@ a:hover { color: #3f70cf; }
 }
 
 
+
+/**
+ *  timeline
+ *****************************/
+
+/* Sizing */
+#timeline, #timeline-options {
+  position: absolute;
+  left: 0; right: 0;
+  width: auto;
+  box-sizing: border-box;
+}
+#timeline { top: 0; bottom: 50px; width: auto; }
+#timeline-options { height: 50px; bottom: 0; }
+
+/* options section */
+#timeline-options { border-top: 1px #cfcfcf solid; }
+
+
+
 /**
  *  smaller screens
  *****************************/
@@ -181,6 +298,8 @@ a:hover { color: #3f70cf; }
 
   body { font-size: 14px; }
 
+  #modal { width: 620px; height: 420px; padding: 38px; }
+
   #topbar { height: 46px; }
   #main { top: 46px; }
 
@@ -188,9 +307,13 @@ a:hover { color: #3f70cf; }
 
   #frames-sidebar { width: 60px; }
   #frames { left: 60px; }
+  .frames-sidebar-element { padding: 8px; height: 60px; }
 
   #viewer-window { bottom: 32px; }
   #viewer-options { height: 32px; }
   .viewer-option { padding: 5px 14px; }
+
+  #timeline { bottom: 40px; }
+  #timeline-options { height: 40px; }
 
 }

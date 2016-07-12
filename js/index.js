@@ -28,16 +28,13 @@ $(document).ready(function() {
 
   // handle events
 
-  $('body').click(function(event) {
+  $('#frames').click(function(event) {
     event.stopPropagation()
     if (activeModel != '') {
       viewer.hide(activeModel)
       activeModel = ''
     }
     $('.frame-element.selected').removeClass('selected')
-  })
-  $('#right').click(function(event) {
-    event.stopPropagation()
   })
 
   $('#viewer-action-reset').click(function(event) {

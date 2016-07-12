@@ -225,6 +225,11 @@ function createListElement(type, file, name) {
     element.click(function(event) {
       event.stopPropagation()
       $('.modal-list-errors', element).toggleClass('hidden')
+      if ($('.modal-list-errors', element).hasClass('hidden')) {
+        $('.modal-list-right use', element).attr('xlink:href', '#svg-dropdown')
+      } else {
+        $('.modal-list-right use', element).attr('xlink:href', '#svg-close-dropdown')
+      }
     })
   }
 

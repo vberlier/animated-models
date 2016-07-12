@@ -174,9 +174,9 @@ function displayFileList(models, textures, mcmetas) {
 function createListElement(type, file, name) {
 
   var icons = {
-    'model': '<svg class="basic"><use xlink:href="index.html#svg-square"></svg>',
-    'texture': '<svg class="basic"><use xlink:href="index.html#svg-image"></svg>',
-    'mcmeta': '<svg class="basic"><use xlink:href="index.html#svg-texture"></svg>'
+    'model': '<svg class="basic"><use xlink:href="#svg-square"></svg>',
+    'texture': '<svg class="basic"><use xlink:href="#svg-image"></svg>',
+    'mcmeta': '<svg class="basic"><use xlink:href="#svg-texture"></svg>'
   }
 
   var icon = icons[type]
@@ -193,13 +193,13 @@ function createListElement(type, file, name) {
 
   html += '<div class="modal-list-right">'
   if (total > 0) {
-    html += '<span class="red">' + (total > 1 ? total + ' errors' : '1 error') +  '<svg><use xlink:href="index.html#svg-dropdown"></svg></span>'
+    html += '<span class="red">' + (total > 1 ? total + ' errors' : '1 error') +  '<svg><use xlink:href="#svg-dropdown"></svg></span>'
   } else {
     html += '<span class="green">Loaded</span>'
   }
   html += '</div>'
 
-  html += '<div class="modal-list-delete"><a class="basic" title="Remove File"><svg><use xlink:href="index.html#svg-cancel"></svg></a></div>'
+  html += '<div class="modal-list-delete"><a class="basic" title="Remove File"><svg><use xlink:href="#svg-cancel"></svg></a></div>'
 
   if (file.errors.length > 0 || file.contextErrors.length > 0) {
 

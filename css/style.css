@@ -205,6 +205,7 @@ svg.basic { color: #c2c2c2; }
   vertical-align: middle;
   width: 1.5em;
   height: 1.5em;
+  margin-right: 0.3em;
   -webkit-transform: translateY(-0.1em);
   -ms-transform: translateY(-0.1em);
   -o-transform: translateY(-0.1em);

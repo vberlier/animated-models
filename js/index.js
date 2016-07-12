@@ -1,6 +1,12 @@
 
 var viewer
 
+var animationFrames = {}
+
+var models = {}
+var textures = {}
+var mcmetas = {}
+
 $(document).ready(function() {
 
 
@@ -43,31 +49,77 @@ $(document).ready(function() {
     modal.hide()
   })
 
+  $('#modal-load').click(function(event) {
+    event.stopPropagation()
+    var frames = getAnimationFrames()
+    var frameNames = Object.keys(frames)
+    for (var i = 0; i < frameNames.length; i++) {
+      var name = frameNames[i]
+      var frame = frames[name]
+      animationFrames[name] = frame
+    }
+    console.log(animationFrames)
+    modal.hide()
+  })
+  $('#modal-file-input').change(function(event) {
+    event.stopPropagation()
+    modal.load(this.files)
+    this.value = ''
+  })
 
 })
 
 
 
-var modal = {
+function getAnimationFrames() {
 
-  show: function() {
+  var frames = {}
 
-    $('#overlay').removeClass('hidden')
-    modal.reset()
+  var modelList = Object.keys(models).sort(alphanum)
 
-  },
+  for (var i = 0; i < modelList.length; i++) {
 
-  hide: function() {
+    var name = modelList[i]
+    var model = models[name]
 
-    $('#overlay').addClass('hidden')
-    modal.reset()
+    if (model.errors.length == 0 && model.contextErrors.length == 0) {
 
-  },
+      var textureNames = Object.keys(model.data.textures)
+      var modeltextures = {}
+      var rawTextureList = []
 
-  reset: function() {
+      for (var j = 0; j < textureNames.length; j++) {
 
-    console.log('reset')
+        var textureReference = textureNames[j]
+        var tmp = model.data.textures[textureReference].split('/')
+        var texturename = tmp[tmp.length-1]
+
+        var texture = textures[texturename + '.png']
+
+        if (texture.data.width != texture.data.height) {
+          var mcmetaname = texturename + '.png.mcmeta'
+          var mcmeta = mcmetas[mcmetaname]
+          rawTextureList.push({name: texturename, texture: texture.raw, mcmeta: mcmeta.raw})
+          modeltextures[texturename] = {texture: texture.data, mcmeta: mcmeta.data}
+        } else {
+          rawTextureList.push({name: texturename, texture: texture.raw})
+          modeltextures[texturename] = {texture: texture.data}
+        }
+
+      }
+
+      var displayName = name.split('.json')[0]
+
+      frames[displayName] = {
+        model: model.data,
+        textures: modeltextures,
+        threeModel: new JsonModel(displayName, model.raw, rawTextureList)
+      }
+
+    }
 
   }
+
+  return frames
 
 }

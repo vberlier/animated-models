@@ -32,9 +32,9 @@ body {
 a {
   color: #5ca8d9;
   text-decoration: none;
-  -webkit-transition: color 0.2s ease-out;
-  -o-transition: color 0.2s ease-out;
-  transition: color 0.2s ease-out;
+  -webkit-transition: color 0.14s ease-out;
+  -o-transition: color 0.14s ease-out;
+  transition: color 0.14s ease-out;
   cursor: pointer;
 }
 a:hover { color: #347eaf; }
@@ -52,9 +52,9 @@ button, label.file-input {
   font-size: 1.1em;
   padding: 0.6em 1.2em;
   border-radius: 4px;
-  -webkit-transition: background 0.2s ease-out;
-  -o-transition: background 0.2s ease-out;
-  transition: background 0.2s ease-out;
+  -webkit-transition: background 0.14s ease-out;
+  -o-transition: background 0.14s ease-out;
+  transition: background 0.14s ease-out;
   cursor: pointer;
   -webkit-transform: translateY(-0.1em);
   -ms-transform: translateY(-0.1em);
@@ -79,6 +79,8 @@ label.file-input {
 }
 
 .hidden { display: none; }
+
+.transparent { opacity: 0; }
 
 :focus { outline: none; }
 
@@ -215,9 +217,9 @@ svg.basic { color: #c2c2c2; }
 .modal-file-list-element.with-problem {
   cursor: pointer;
   background-color: #fff;
-  -webkit-transition: background-color 0.2s ease-out;
-  -o-transition: background-color 0.2s ease-out;
-  transition: background-color 0.2s ease-out;
+  -webkit-transition: background-color 0.14s ease-out;
+  -o-transition: background-color 0.14s ease-out;
+  transition: background-color 0.14s ease-out;
 }
 .modal-file-list-element.with-problem:hover { background-color: #fef4f4; }
 
@@ -234,9 +236,9 @@ svg.basic { color: #c2c2c2; }
   top: 0.6em;
   right: 0.7em;
   opacity: 0;
-  -webkit-transition: opacity 0.2s ease-out;
-  -o-transition: opacity 0.2s ease-out;
-  transition: opacity 0.2s ease-out;
+  -webkit-transition: opacity 0.14s ease-out;
+  -o-transition: opacity 0.14s ease-out;
+  transition: opacity 0.14s ease-out;
 }
 .modal-file-list-element:hover .modal-list-delete { opacity: 1; }
 
@@ -350,6 +352,46 @@ svg.basic { color: #c2c2c2; }
   box-sizing: border-box;
 }
 
+/* frames section */
+#frames-container {
+  position: relative;
+  width: 100%; height: 100%;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  padding: 14px;
+  box-sizing: border-box;
+}
+
+.frame-element {
+  display: inline-block;
+  vertical-align: top;
+  margin: 2px; padding: 8px;
+  width: 120px;
+  background-color: rgba(141, 200, 238, 0);
+  border: 1px rgba(141, 200, 238, 0) solid;
+  box-sizing: border-box;
+  -webkit-transition: border 0.14s ease-out, background 0.14s ease-out;
+  -o-transition: border 0.14s ease-out, background 0.14s ease-out;
+  transition: border 0.14s ease-out, background 0.14s ease-out;
+  cursor: pointer;
+  text-align: center;
+}
+.frame-element:hover, .frame-element.selected {
+  background-color: rgba(141, 200, 238, 0.15);
+  border-color: rgba(141, 200, 238, 0.3);
+}
+
+.frame-preview {
+  display: inline-block;
+  position: relative;
+  width: 80px; height: 95px;
+  color: #ccc;
+}
+
+.frame-name {
+  word-wrap: break-word;
+}
+
 
 
 /**
@@ -445,6 +487,9 @@ svg.basic { color: #c2c2c2; }
   #frames-sidebar { width: 60px; }
   #frames { left: 60px; }
   .frames-sidebar-element { padding: 8px; height: 60px; }
+  #frames-container { padding: 8px; }
+  .frame-element { margin: 1px; padding: 5px; width: 100px; }
+  .frame-preview { width: 65px; height: 75px; }
 
   #viewer-window { bottom: 32px; }
   #viewer-options { height: 32px; }

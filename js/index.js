@@ -1,6 +1,8 @@
 
 var viewer
 
+var activeModel = ''
+
 var animationFrames = {}
 
 var models = {}
@@ -26,9 +28,27 @@ $(document).ready(function() {
 
   // handle events
 
+  $('body').click(function(event) {
+    event.stopPropagation()
+    if (activeModel != '') {
+      viewer.hide(activeModel)
+      activeModel = ''
+    }
+    $('.frame-element.selected').removeClass('selected')
+  })
+  $('#right').click(function(event) {
+    event.stopPropagation()
+  })
+
   $('#viewer-action-reset').click(function(event) {
     event.stopPropagation()
     viewer.reset()
+  })
+  $('#viewer-action-target').click(function(event) {
+    event.stopPropagation()
+    if (Object.keys(animationFrames).indexOf(activeModel) >= 0) {
+      viewer.lookAt(activeModel)
+    }
   })
 
   $('#frames-sidebar-loadFrames').click(function(event) {
@@ -50,16 +70,30 @@ $(document).ready(function() {
   })
 
   $('#modal-load').click(function(event) {
+
     event.stopPropagation()
+
     var frames = getAnimationFrames()
-    var frameNames = Object.keys(frames)
+    var frameNames = Object.keys(frames).concat(Object.keys(animationFrames)).sort(alphanum)
+    var newFrames = {}
+
     for (var i = 0; i < frameNames.length; i++) {
       var name = frameNames[i]
-      var frame = frames[name]
-      animationFrames[name] = frame
+      var frame
+      if (Object.keys(frames).indexOf(name) >= 0) {
+        frame = frames[name]
+      } else {
+        frame = animationFrames[name]
+      }
+      newFrames[name] = frame
     }
-    console.log(animationFrames)
+
+    animationFrames = newFrames
+
     modal.hide()
+
+    displayAnimationFrames()
+
   })
   $('#modal-file-input').change(function(event) {
     event.stopPropagation()
@@ -121,5 +155,50 @@ function getAnimationFrames() {
   }
 
   return frames
+
+}
+
+
+
+function displayAnimationFrames() {
+
+  var frameNames = Object.keys(animationFrames)
+  var cont = $('#frames-container')
+  cont.html('')
+
+  viewer.removeAll()
+
+  for (var i = 0; i < frameNames.length; i++) {
+
+    var name = frameNames[i]
+    var frame = animationFrames[name]
+
+    var html = '<div class="frame-element"><div class="frame-preview noselect"><svg><use xlink:href="#svg-file"/></svg></div><div class="frame-name">' + name + '</div></div>'
+
+    var frameElement = $(html)
+    cont.append(frameElement)
+
+    viewer.load(frame.threeModel)
+    viewer.hide(name)
+
+    ;(function(name, frame, frameElement) {
+
+      frameElement.click(function(event) {
+        event.stopPropagation()
+        $('.frame-element.selected').removeClass('selected')
+        frameElement.addClass('selected')
+        var frameNames = Object.keys(animationFrames)
+        for (var j = 0; j < frameNames.length; j++) {
+          viewer.hide(frameNames[j])
+        }
+        viewer.show(name)
+        activeModel = name
+      })
+
+
+    })(name, frame, frameElement)
+
+  }
+
 
 }

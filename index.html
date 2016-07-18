@@ -84,6 +84,15 @@
         <path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm5 13.59L15.59 17 12 13.41 8.41 17 7 15.59 10.59 12 7 8.41 8.41 7 12 10.59 15.59 7 17 8.41 13.41 12 17 15.59z" fill="currentColor"/>
         <path d="M0 0h24v24H0z" fill="none"/>
       </symbol>
+      <symbol id="svg-select" viewBox="0 0 24 24">
+        <path d="M0 0h24v24H0z" fill="none"/>
+        <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z" fill="currentColor"/>
+      </symbol>
+      <symbol id="svg-trashbin" viewBox="0 0 24 24">
+          <path d="M0 0h24v24H0V0z" fill="none"/>
+          <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zm2.46-7.12l1.41-1.41L12 12.59l2.12-2.12 1.41 1.41L13.41 14l2.12 2.12-1.41 1.41L12 15.41l-2.12 2.12-1.41-1.41L10.59 14l-2.13-2.12zM15.5 4l-1-1h-5l-1 1H5v2h14V4z" fill="currentColor"/>
+          <path d="M0 0h24v24H0z" fill="none"/>
+      </symbol>
 
     </svg>
 
@@ -120,6 +129,14 @@
                         <a id="frames-sidebar-loadFrames" class="basic" title="Load resources"><svg><use xlink:href="#svg-add-file"></svg></a>
                       </div>
 
+                      <div class="frames-sidebar-element">
+                        <a id="frames-sidebar-selectAll" class="basic" title="Select all"><svg><use xlink:href="#svg-select"></svg></a>
+                      </div>
+
+                      <div class="frames-sidebar-element">
+                        <a id="frames-sidebar-delete" class="basic" title="Remove selected models"><svg><use xlink:href="#svg-cancel"></svg></a>
+                      </div>
+
                     </div>
                   </div>
 
@@ -154,7 +171,7 @@
                     </div>
                   </div>
 
-                  <div id="viewer-options">
+                  <div id="viewer-options" class="noselect">
                     <div class="relative">
 
                       <div class="viewer-option">
@@ -218,6 +235,8 @@
                     <div class="relative">
 
                       Input files <label for="modal-file-input" class="file-input">Choose files...</label><input id="modal-file-input" type="file" value="" multiple>
+
+                      <div id="modal-file-count">No valid model loaded</div>
 
                       <div id="modal-input-summary">
                         <div class="relative">
@@ -284,8 +303,11 @@
     <!-- proper sorting -->
     <script src="js/libs/alphanum.js" charset="utf-8"></script>
 
-    <!-- checkModel -->
+    <!-- check files -->
     <script src="js/checkFiles.js" charset="utf-8"></script>
+
+    <!-- animation frames -->
+    <script src="js/animationFrames.js" charset="utf-8"></script>
 
     <!-- modal -->
     <script src="js/modal.js" charset="utf-8"></script>

@@ -151,9 +151,9 @@ svg.basic { color: #c2c2c2; }
 #modal-loading-section { padding: 32px; font-size: 1.1em; }
 .modal-footer-element { float: right; margin-left: 1em; }
 
-#modal-file-stats {
+#modal-file-count {
   position: absolute;
-  top: 10%;
+  top: 0.25em;
   right: 0;
 }
 

@@ -21,6 +21,7 @@ var modal = {
     textures = {}
     mcmetas = {}
     $('.modal-file-list-element').remove()
+    $('#modal-file-count').html('No valid model loaded')
 
   },
 
@@ -107,6 +108,7 @@ var modal = {
 
           checkContext(models, textures, mcmetas)
           displayFileList(models, textures, mcmetas)
+          updateModelCount(models)
 
         }
 
@@ -244,8 +246,34 @@ function createListElement(type, file, name) {
     element.remove()
     checkContext(models, textures, mcmetas)
     displayFileList(models, textures, mcmetas)
+    updateModelCount(models)
   })
 
   return element
+
+}
+
+
+
+function updateModelCount(models) {
+
+  var totalValidModels = 0
+
+  var modelNames = Object.keys(models)
+
+  for (var j = 0; j < modelNames.length; j++) {
+    var testModel = models[modelNames[j]]
+    if (testModel.errors.length == 0 && testModel.contextErrors.length == 0) {
+      totalValidModels += 1
+    }
+  }
+
+  if (totalValidModels <= 0) {
+    $('#modal-file-count').html('No valid model loaded')
+  } else if (totalValidModels == 1) {
+    $('#modal-file-count').html('1 valid model loaded')
+  } else {
+    $('#modal-file-count').html(totalValidModels + ' valid models loaded')
+  }
 
 }

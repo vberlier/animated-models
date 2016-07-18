@@ -93,6 +93,30 @@
           <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zm2.46-7.12l1.41-1.41L12 12.59l2.12-2.12 1.41 1.41L13.41 14l2.12 2.12-1.41 1.41L12 15.41l-2.12 2.12-1.41-1.41L10.59 14l-2.13-2.12zM15.5 4l-1-1h-5l-1 1H5v2h14V4z" fill="currentColor"/>
           <path d="M0 0h24v24H0z" fill="none"/>
       </symbol>
+      <symbol id="svg-fast-rewind" viewBox="0 0 24 24">
+        <path d="M11 18V6l-8.5 6 8.5 6zm.5-6l8.5 6V6l-8.5 6z" fill="currentColor"/>
+        <path d="M0 0h24v24H0z" fill="none"/>
+      </symbol>
+      <symbol id="svg-fast-forward" viewBox="0 0 24 24">
+        <path d="M4 18l8.5-6L4 6v12zm9-12v12l8.5-6L13 6z" fill="currentColor"/>
+        <path d="M0 0h24v24H0z" fill="none"/>
+      </symbol>
+      <symbol id="svg-skip-next" viewBox="0 0 24 24">
+        <path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z" fill="currentColor"/>
+        <path d="M0 0h24v24H0z" fill="none"/>
+      </symbol>
+      <symbol id="svg-skip-previous" viewBox="0 0 24 24">
+        <path d="M6 6h2v12H6zm3.5 6l8.5 6V6z" fill="currentColor"/>
+        <path d="M0 0h24v24H0z" fill="none"/>
+      </symbol>
+      <symbol id="svg-play" viewBox="0 0 24 24">
+        <path d="M8 5v14l11-7z" fill="currentColor"/>
+        <path d="M0 0h24v24H0z" fill="none"/>
+      </symbol>
+      <symbol id="svg-pause" viewBox="0 0 24 24">
+        <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" fill="currentColor"/>
+        <path d="M0 0h24v24H0z" fill="none"/>
+      </symbol>
 
     </svg>
 
@@ -198,7 +222,11 @@
               <div id="timeline">
                 <div class="relative">
 
+                  <div class="timeline-frame">
 
+                    
+
+                  </div>
 
                 </div>
               </div>
@@ -206,7 +234,25 @@
               <div id="timeline-options">
                 <div class="relative">
 
+                  <div class="timeline-option-element">
+                    <a id="timeline-option-first" class="basic" title="First frame"><svg><use xlink:href="#svg-fast-rewind"></svg></a>
+                  </div>
 
+                  <div class="timeline-option-element">
+                    <a id="timeline-option-previous" class="basic" title="Previous frame"><svg><use xlink:href="#svg-skip-previous"></svg></a>
+                  </div>
+
+                  <div class="timeline-option-element">
+                    <a id="timeline-option-play" class="basic" title="Play"><svg><use xlink:href="#svg-play"></svg></a>
+                  </div>
+
+                  <div class="timeline-option-element">
+                    <a id="timeline-option-next" class="basic" title="Next frame"><svg><use xlink:href="#svg-skip-next"></svg></a>
+                  </div>
+
+                  <div class="timeline-option-element">
+                    <a id="timeline-option-last" class="basic" title="Last frame"><svg><use xlink:href="#svg-fast-forward"></svg></a>
+                  </div>
 
                 </div>
               </div>

@@ -456,7 +456,14 @@ svg.basic { color: #c2c2c2; }
 #timeline-options { height: 50px; bottom: 0; }
 
 /* options section */
-#timeline-options { border-top: 1px #cfcfcf solid; }
+#timeline-options { border-top: 1px #cfcfcf solid; text-align: center; }
+
+.timeline-option-element {
+  display: inline-block;
+  height: 100%;
+  width: 4em;
+  margin: 0 0.5em;
+}
 
 
 

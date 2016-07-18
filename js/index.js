@@ -63,12 +63,10 @@ $(document).ready(function() {
     event.stopPropagation()
     if (allFramesSelected) {
       $('.frame-element').remove()
-      viewer.hideAll()
       viewer.removeAll()
       animationFrames = {}
     } else if (activeModel != '') {
       $('.frame-element[data-name="' + activeModel + '"]').remove()
-      viewer.hide(activeModel)
       viewer.remove(activeModel)
       delete animationFrames[activeModel]
     }

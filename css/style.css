@@ -96,6 +96,7 @@ label.file-input {
 svg {
   display: inline-block;
   position: relative;
+  overflow: hidden;
   width: 100%;
   height: 100%;
 }
@@ -390,6 +391,7 @@ svg.basic { color: #c2c2c2; }
 
 .frame-name {
   word-wrap: break-word;
+  width: 102px;
 }
 
 
@@ -452,11 +454,82 @@ svg.basic { color: #c2c2c2; }
   width: auto;
   box-sizing: border-box;
 }
-#timeline { top: 0; bottom: 50px; width: auto; }
-#timeline-options { height: 50px; bottom: 0; }
+#timeline { top: 0; bottom: 60px; width: auto; }
+#timeline-options { height: 60px; bottom: 0; }
+
+/* frames section */
+#timeline-frames {
+  width: 100%;
+  height: 100%;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+  box-sizing: border-box;
+  padding-right: 200px;
+}
+
+.timeline-frame-element {
+  position: relative;
+  display: inline-block;
+  width: 124px;
+  height: 100%;
+  margin: 0;
+  border-left: 1px #e8e8e8 solid;
+  border-right: 1px #e8e8e8 solid;
+  box-sizing: border-box;
+  cursor: pointer;
+  white-space: normal;
+  background-color: #f7f7f7;
+  word-wrap: break-word;
+}
+.timeline-frame-element-name {
+  position: absolute;
+  top: 3em; left: 0.8em; right: 0.8em;
+  width: auto;
+}
+.timeline-frame-icon {
+  position: absolute;
+  top: 5em;
+  height: 4em;
+}
+.timeline-frame-element-actions {
+  position: absolute;
+  top: 0.4em; right: 0.4em;
+  height: 1.8em;
+  text-align: right;
+}
+.timeline-frame-action-element {
+  display: inline-block;
+  position: relative;
+  height: 100%;
+  width: 1.8em;
+}
+.timeline-frame-element-options {
+  position: absolute;
+  bottom: 0; right: 0; left: 0;
+  width: auto;
+}
+.timeline-frame-element-options input {
+  display: block;
+  font-size: 1.6em;
+  text-align: right;
+  box-sizing: border-box;
+  padding: 0.4em 0.6em;
+  width: 100%;
+  border: none;
+  background: none;
+  color: #afafaf;
+}
+.timeline-frame-element-options input:focus {
+  background-color: rgba(255, 255, 255, 0.6);
+}
+.timeline-between {
+  display: inline-block;
+  width: 0; height: 100%;
+}
 
 /* options section */
-#timeline-options { border-top: 1px #cfcfcf solid; text-align: center; }
+#timeline-options { border-top: 1px #cfcfcf solid; padding: 0.2em 0.6em; }
 
 .timeline-option-element {
   display: inline-block;
@@ -497,12 +570,14 @@ svg.basic { color: #c2c2c2; }
   #frames-container { padding: 8px; }
   .frame-element { margin: 1px; padding: 5px; width: 100px; }
   .frame-preview { width: 65px; height: 75px; }
+  .frame-name { width: 88px; }
 
   #viewer-window { bottom: 32px; }
   #viewer-options { height: 32px; }
   .viewer-option { padding: 5px 14px; }
 
-  #timeline { bottom: 40px; }
-  #timeline-options { height: 40px; }
+  #timeline { bottom: 50px; }
+  .timeline-frame-element { width: 102px; }
+  #timeline-options { height: 50px; }
 
 }

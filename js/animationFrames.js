@@ -68,7 +68,7 @@ function displayAnimationFrames() {
     var name = frameNames[i]
     var frame = animationFrames[name]
 
-    var html = '<div class="frame-element" data-name="' + name + '"><div class="frame-preview noselect"><svg><use xlink:href="#svg-file"/></svg></div><div class="frame-name">' + name + '</div></div>'
+    var html = '<div class="frame-element" data-name="' + name + '"><div class="frame-preview"><svg><use xlink:href="#svg-file"/></svg></div><div class="frame-name">' + name + '</div></div>'
 
     var frameElement = $(html)
     cont.append(frameElement)
@@ -88,10 +88,34 @@ function displayAnimationFrames() {
         allFramesSelected = false
       })
 
+      frameElement.draggable({
+        connectToSortable: "#timeline-frames",
+        helper: "clone",
+        containment: "#wrapper",
+        appendTo: '#wrapper',
+        scroll: false,
+        stack: '.frame-element',
+        start: function(event, ui) {
+
+          if (!allFramesSelected) {
+            frameElement.click()
+          }
+
+        }
+      })
+
 
     })(name, frame, frameElement)
 
   }
 
+
+}
+
+
+
+function createTimelineFrame(name) {
+
+  return '<div class="timeline-frame-element"><div class="timeline-frame-element-actions"><div class="timeline-frame-action-element"><a id="timeline-frame-clone" class="basic" title="Duplicate"><svg><use xlink:href="#svg-duplicate"></svg></a></div><div class="timeline-frame-action-element"><a id="timeline-frame-delete" class="basic" title="Delete"><svg><use xlink:href="#svg-close"></svg></a></div></div><div class="timeline-frame-element-name">' + name + '</div><div class="timeline-frame-element-options"><input type="text" value="1"></div></div>'
 
 }

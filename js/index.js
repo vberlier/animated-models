@@ -29,6 +29,11 @@ $(document).ready(function() {
 
   // handle events
 
+  $(document).on('scroll', function(event) {
+    $(document).scrollLeft(0)
+    $(document).scrollTop(0)
+  })
+
   $('#frames').click(function(event) {
     event.stopPropagation()
     if (activeModel != '') {
@@ -117,6 +122,45 @@ $(document).ready(function() {
     event.stopPropagation()
     modal.load(this.files)
     this.value = ''
+  })
+
+  $('#timeline-frames').mousewheel(function(event, delta) {
+    event.stopPropagation()
+    event.preventDefault()
+    this.scrollLeft -= delta * 42
+  })
+  $('#timeline-frames').sortable({
+    revert: 140,
+    scroll: false,
+    axis: 'x',
+    receive: function(event, ui) {
+
+      var html = []
+
+      $(this).find('.frame-element').each(function() {
+
+        if (allFramesSelected) {
+
+          $('#frames-container').find('.frame-element').each(function() {
+            var name = $(this).attr('data-name')
+            var timeframe = createTimelineFrame(name)
+            html.push(timeframe)
+          })
+
+        } else {
+
+          var name = $(this).attr('data-name')
+          var timeframe = createTimelineFrame(name)
+          html.push(timeframe)
+
+        }
+
+      })
+
+      $(this).find('.frame-element').replaceWith(html.join(''))
+
+    }
+
   })
 
 })

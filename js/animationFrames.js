@@ -129,12 +129,12 @@ function createTimelineFrame(name, duration) {
       timelineFrame.css('width', input*1 * 7.4 + 'em')
       $(this).css({
         color: '#afafaf',
-        background: '#f8f8f8'
+        background: 'rgba(255, 255, 255, 0.4)'
       })
     } else {
       $(this).css({
-        color: '#de8383',
-        background: '#ffdada'
+        color: '#e99595',
+        background: '#ffe4e4'
       })
     }
   })

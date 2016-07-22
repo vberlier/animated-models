@@ -485,9 +485,9 @@ svg.basic { color: #c2c2c2; }
 }
 
 .timeline-frame-element {
-  -webkit-transition: width 0.14s ease-out, opacity 0.14s ease-out;
-  -o-transition: width 0.14s ease-out, opacity 0.14s ease-out;
-  transition: width 0.14s ease-out, opacity 0.14s ease-out;
+  -webkit-transition: width 0.14s ease-out, opacity 0.14s ease-out, background 0.14s ease-out;
+  -o-transition: width 0.14s ease-out, opacity 0.14s ease-out, background 0.14s ease-out;
+  transition: width 0.14s ease-out, opacity 0.14s ease-out, background 0.14s ease-out;
 }
 .timeline-frame-element-name {
   position: absolute;
@@ -525,11 +525,15 @@ svg.basic { color: #c2c2c2; }
   width: 100%;
   border: none;
   color: #afafaf;
-  background: #f8f8f8;
+  background: rgba(255, 255, 255, 0.4);
 }
 .timeline-between {
   display: inline-block;
   width: 0; height: 100%;
+}
+
+.timeline-frame-element:hover, .timeline-frame-element.activeFrame {
+  background: #e4eff7;
 }
 
 .timeline-frame-element.ui-sortable-helper { opacity: 0.75; }

@@ -4,7 +4,7 @@
 
     <meta charset="utf-8">
 
-    <!-- <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'> -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="css/style.css" charset="utf-8">
 
     <title>Animated models - Fizzy</title>
@@ -16,8 +16,8 @@
     <svg xmlns="http://www.w3.org/2000/svg" class="hidden">
 
       <symbol id="svg-file" viewBox="0 0 24 24">
-        <path d="M6 2c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6H6zm7 7V3.5L18.5 9H13z" fill="currentColor"/>
         <path d="M0 0h24v24H0z" fill="none"/>
+        <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z" fill="currentColor"/>
       </symbol>
       <symbol id="svg-folder" viewBox="0 0 24 24">
         <path d="M0 0h24v24H0z" fill="none"/>
@@ -89,9 +89,9 @@
         <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z" fill="currentColor"/>
       </symbol>
       <symbol id="svg-trashbin" viewBox="0 0 24 24">
-          <path d="M0 0h24v24H0V0z" fill="none"/>
-          <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zm2.46-7.12l1.41-1.41L12 12.59l2.12-2.12 1.41 1.41L13.41 14l2.12 2.12-1.41 1.41L12 15.41l-2.12 2.12-1.41-1.41L10.59 14l-2.13-2.12zM15.5 4l-1-1h-5l-1 1H5v2h14V4z" fill="currentColor"/>
-          <path d="M0 0h24v24H0z" fill="none"/>
+        <path d="M0 0h24v24H0V0z" fill="none"/>
+        <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zm2.46-7.12l1.41-1.41L12 12.59l2.12-2.12 1.41 1.41L13.41 14l2.12 2.12-1.41 1.41L12 15.41l-2.12 2.12-1.41-1.41L10.59 14l-2.13-2.12zM15.5 4l-1-1h-5l-1 1H5v2h14V4z" fill="currentColor"/>
+        <path d="M0 0h24v24H0z" fill="none"/>
       </symbol>
       <symbol id="svg-fast-rewind" viewBox="0 0 24 24">
         <path d="M11 18V6l-8.5 6 8.5 6zm.5-6l8.5 6V6l-8.5 6z" fill="currentColor"/>
@@ -129,6 +129,10 @@
         <path d="M16 13h-3V3h-2v10H8l4 4 4-4zM4 19v2h16v-2H4z" fill="currentColor"/>
         <path d="M0 0h24v24H0z" fill="none"/>
       </symbol>
+      <symbol id="svg-export" viewBox="0 0 24 24">
+        <path d="M0 0h24v24H0z" fill="none"/>
+        <path d="M21 3.01H3c-1.1 0-2 .9-2 2V9h2V4.99h18v14.03H3V15H1v4.01c0 1.1.9 1.98 2 1.98h18c1.1 0 2-.88 2-1.98v-14c0-1.11-.9-2-2-2zM11 16l4-4-4-4v3H1v2h10v3z" fill="currentColor"/>
+      </symbol>
 
     </svg>
 
@@ -141,7 +145,13 @@
 
           <div id="topbar-left">
             <div class="relative">
-              <h1>Animated model generator - <a href="#">Fizzy</a></h1>
+              <h1>Minecraft model animator - <a href="#">Fizzy</a></h1>
+            </div>
+          </div>
+
+          <div id="topbar-right">
+            <div class="relative">
+              <a id="topbar-export" title="Export animation"><svg><use xlink:href="#svg-export"></svg> Export</a>
             </div>
           </div>
 
@@ -251,6 +261,10 @@
 
                   <div class="timeline-option-element-text">
                     <a id="timeline-option-delete-all" title="Delete all frames">Reset animation</a>
+                  </div>
+
+                  <div class="timeline-option-element-text right">
+                    <a title="Help">Need help?</a>
                   </div>
 
                 </div>

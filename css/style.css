@@ -279,12 +279,30 @@ svg.basic { color: #c2c2c2; }
   top: 0; bottom: 0; left: 0;
   height: auto;
   width: auto;
-  padding: 13px 26px;
+  padding: 15px 26px;
 }
 #topbar-left h1 {
   font-size: 1.3em;
   font-weight: normal;
   margin: 0;
+}
+
+#topbar-right {
+  position: absolute;
+  top: 0; bottom: 0; right: 0;
+  height: auto;
+  width: auto;
+  padding: 15px 26px;
+  font-size: 1.2em;
+}
+#topbar-right svg {
+  height: 1.6em; width: 1.6em;
+  vertical-align: middle;
+  margin-right: 0.2em;
+  -webkit-transform: translateY(-0.12em);
+  -ms-transform: translateY(-0.12em);
+  -o-transform: translateY(-0.12em);
+  transform: translateY(-0.12em);
 }
 
 
@@ -568,6 +586,8 @@ svg.basic { color: #c2c2c2; }
   width: 3em;
 }
 
+.right { float: right; border: none; margin: 0; }
+
 
 
 /**
@@ -592,7 +612,7 @@ svg.basic { color: #c2c2c2; }
   #topbar { height: 46px; }
   #main { top: 46px; }
 
-  #topbar-left { padding: 9px 18px; }
+  #topbar-left, #topbar-right { padding: 10px 18px; }
 
   #frames-sidebar { width: 60px; }
   #frames { left: 60px; }

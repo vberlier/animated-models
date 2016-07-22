@@ -70,10 +70,12 @@ $(document).ready(function() {
       $('.frame-element').remove()
       viewer.removeAll()
       animationFrames = {}
+      $('.timeline-frame-element').remove()
     } else if (activeModel != '') {
       $('.frame-element[data-name="' + activeModel + '"]').remove()
       viewer.remove(activeModel)
       delete animationFrames[activeModel]
+      $('.timeline-frame-element[data-name="' + activeModel + '"]').remove()
     }
     allFramesSelected = false
     activeModel = ''
@@ -117,6 +119,8 @@ $(document).ready(function() {
 
     displayAnimationFrames()
 
+    allFramesSelected = false
+
   })
   $('#modal-file-input').change(function(event) {
     event.stopPropagation()
@@ -133,6 +137,11 @@ $(document).ready(function() {
     revert: 140,
     scroll: false,
     axis: 'x',
+    placeholder: 'timeline-sorting-placeholder',
+    start: function(event, ui) {
+      ui.placeholder.html('<svg><use xlink:href="#svg-dropHere"></svg>')
+      ui.placeholder.css('width', ui.item.css('width'))
+    },
     receive: function(event, ui) {
 
       var html = []
@@ -143,21 +152,21 @@ $(document).ready(function() {
 
           $('#frames-container').find('.frame-element').each(function() {
             var name = $(this).attr('data-name')
-            var timeframe = createTimelineFrame(name)
+            var timeframe = createTimelineFrame(name, 1)
             html.push(timeframe)
           })
 
         } else {
 
           var name = $(this).attr('data-name')
-          var timeframe = createTimelineFrame(name)
+          var timeframe = createTimelineFrame(name, 1)
           html.push(timeframe)
 
         }
 
       })
 
-      $(this).find('.frame-element').replaceWith(html.join(''))
+      $(this).find('.frame-element').replaceWith(html)
 
     }
 

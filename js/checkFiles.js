@@ -218,8 +218,8 @@ function checkTexture(img) {
   if (height % 16 != 0)
     errors.push('Texture height is not a multiple of 16.')
 
-  if (height % width != 0)
-    errors.push('Texture ratio is invalid.')
+  if (height != width)
+    errors.push('Texture isn\'t a square, width and height are different.')
 
   return errors
 
@@ -227,105 +227,10 @@ function checkTexture(img) {
 
 
 
-function checkMcmeta(mcmeta) {
-
-  var errors = []
-
-  var hasAnimation = true
-
-  if (!mcmeta.hasOwnProperty('animation')) {
-    errors.push('Couldn\'t find the "animation" property.')
-    hasAnimation = false
-  }
-
-  if (hasAnimation) {
-
-    var animation = mcmeta.animation
-
-    var hasFrametime = false
-
-    if (animation.hasOwnProperty('frametime')) {
-      hasFrametime = true
-      if (typeof animation.frametime != 'number' || animation.frametime < 1) {
-        errors.push('The "frametime" property in "animation" is invalid.')
-      }
-    }
-
-    if (animation.hasOwnProperty('frames')) {
-
-      var frames = animation.frames
-
-      for (var i = 0; i < frames.length; i++) {
-
-        var frame = frames[i]
-
-        if (typeof frame == 'number') {
-          if (frame < 0)
-            errors.push('Frame "' + i + '" is invalid.')
-        } else {
-
-          if (!frame.hasOwnProperty('index')) {
-            errors.push('Couldn\'t find the "index" property for frame "' + i + '".')
-          } else {
-
-            var index = frame.index
-
-            if (typeof index != 'number' || index < 0) {
-              errors.push('The "index" property for frame "' + i + '" is invalid.')
-            }
-
-            if (frame.hasOwnProperty('time')) {
-              var time = frame.time
-              if (typeof time != 'number' || time < 1) {
-                errors.push('The "time" property for frame "' + i + '" is invalid.')
-              }
-            }
-
-          }
-
-        }
-
-      }
-
-    }
-
-  }
-
-  return errors
-
-}
-
-
-
-function checkContext(models, textures, mcmetas) {
+function checkContext(models, textures) {
 
   var modelList = Object.keys(models)
   var textureList = Object.keys(textures)
-  var mcmetaList = Object.keys(mcmetas)
-
-  for (var i = 0; i < mcmetaList.length; i++) {
-
-    var name = mcmetaList[i]
-    var mcmeta = mcmetas[name]
-    mcmeta.contextErrors = []
-
-    var texturename = name.substr(0, name.length - 7)
-    if (textureList.indexOf(texturename) == -1) {
-      mcmeta.contextErrors.push('Couldn\'t find texture "' + texturename + '".')
-    } else {
-
-      var texture = textures[texturename]
-
-      if (mcmeta.errors.length > 0) {
-        texture.contextErrors.push('The associated mcmeta file "' + name + '" is invalid.')
-      }
-      if (texture.errors.length > 0) {
-        mcmeta.contextErrors.push('The associated texture "' + texturename + '" is invalid.')
-      }
-
-    }
-
-  }
 
   for (var i = 0; i < textureList.length; i++) {
 
@@ -334,16 +239,6 @@ function checkContext(models, textures, mcmetas) {
 
     texture.contextErrors = []
     texture.used = false
-
-    if (texture.data.width != texture.data.height && texture.errors.length == 0) {
-
-      var mcmetaname = name + '.mcmeta'
-
-      if (mcmetaList.indexOf(mcmetaname) == -1) {
-        texture.contextErrors.push('Couldn\'t find mcmeta file "' + mcmetaname + '".')
-      }
-
-    }
 
   }
 
@@ -370,7 +265,7 @@ function checkContext(models, textures, mcmetas) {
           texture.used = true
 
           if (texture.errors.length > 0 || texture.contextErrors.length > 0) {
-            model.contextErrors.push('Couldn\'t load texture "' + texturename + '".')
+            model.contextErrors.push('Couldn\'t load texture "' + texturename + '", the texture is invalid.')
           }
 
         }

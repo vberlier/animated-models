@@ -8,7 +8,6 @@ var allFramesSelected = false
 
 var models = {}
 var textures = {}
-var mcmetas = {}
 
 $(document).ready(function() {
 

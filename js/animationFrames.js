@@ -25,15 +25,9 @@ function getAnimationFrames() {
 
         var texture = textures[texturename + '.png']
 
-        if (texture.data.width != texture.data.height) {
-          var mcmetaname = texturename + '.png.mcmeta'
-          var mcmeta = mcmetas[mcmetaname]
-          rawTextureList.push({name: texturename, texture: texture.raw, mcmeta: mcmeta.raw})
-          modeltextures[texturename] = {texture: texture.data, mcmeta: mcmeta.data}
-        } else {
-          rawTextureList.push({name: texturename, texture: texture.raw})
-          modeltextures[texturename] = {texture: texture.data}
-        }
+        rawTextureList.push({name: texturename, texture: texture.raw})
+        modeltextures[texturename] = {texture: texture.data}
+
 
       }
 

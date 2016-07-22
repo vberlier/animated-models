@@ -19,7 +19,6 @@ var modal = {
 
     models = {}
     textures = {}
-    mcmetas = {}
     $('.modal-file-list-element').remove()
     $('#modal-file-count').html('No valid model loaded')
 
@@ -40,8 +39,6 @@ var modal = {
           type = 'model'
         else if (name.match(/\.png$/))
           type = 'texture'
-        else if (name.match(/\.png\.mcmeta$/))
-          type = 'mcmeta'
 
         var reader = new FileReader()
         reader.onload = function(event) {
@@ -82,32 +79,10 @@ var modal = {
               raw: result
             }
 
-          } else if (type == 'mcmeta') {
-
-            var mcmeta
-            try {
-              mcmeta = JSON.parse(result)
-              mcmetas[name] = {
-                errors: checkMcmeta(mcmeta),
-                parsed: true,
-                contextErrors: [],
-                data: mcmeta,
-                raw: result
-              }
-            } catch (e) {
-              mcmetas[name] = {
-                errors: ["Couldn't parse mcmeta. " + e.message + "."],
-                parsed: false,
-                contextErrors: [],
-                data: {},
-                raw: result
-              }
-            }
-
           }
 
-          checkContext(models, textures, mcmetas)
-          displayFileList(models, textures, mcmetas)
+          checkContext(models, textures)
+          displayFileList(models, textures)
           updateModelCount(models)
 
         }
@@ -116,8 +91,6 @@ var modal = {
           reader.readAsText(file)
         else if (type == 'texture')
           reader.readAsDataURL(file)
-        else if (type == 'mcmeta')
-          reader.readAsText(file)
 
       })(file)
 
@@ -130,11 +103,10 @@ var modal = {
 
 
 
-function displayFileList(models, textures, mcmetas) {
+function displayFileList(models, textures) {
 
   var modelList = Object.keys(models).sort(alphanum)
   var textureList = Object.keys(textures).sort(alphanum)
-  var mcmetaList = Object.keys(mcmetas).sort(alphanum)
 
   var fileList = $('#modal-input-file-list')
   fileList.html('')
@@ -159,16 +131,6 @@ function displayFileList(models, textures, mcmetas) {
 
   }
 
-  for (var i = 0; i < mcmetaList.length; i++) {
-
-    var name = mcmetaList[i]
-    var mcmeta = mcmetas[name]
-
-    var element = createListElement('mcmeta', mcmeta, name)
-    fileList.append(element)
-
-  }
-
 }
 
 
@@ -177,8 +139,7 @@ function createListElement(type, file, name) {
 
   var icons = {
     'model': '<svg class="basic"><use xlink:href="#svg-square"></svg>',
-    'texture': '<svg class="basic"><use xlink:href="#svg-image"></svg>',
-    'mcmeta': '<svg class="basic"><use xlink:href="#svg-texture"></svg>'
+    'texture': '<svg class="basic"><use xlink:href="#svg-image"></svg>'
   }
 
   var icon = icons[type]
@@ -241,11 +202,9 @@ function createListElement(type, file, name) {
       delete models[name]
     else if (type == 'texture')
       delete textures[name]
-    else if (type == 'mcmeta')
-      delete mcmetas[name]
     element.remove()
-    checkContext(models, textures, mcmetas)
-    displayFileList(models, textures, mcmetas)
+    checkContext(models, textures)
+    displayFileList(models, textures)
     updateModelCount(models)
   })
 

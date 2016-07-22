@@ -3,6 +3,10 @@ var viewer
 
 var activeModel = ''
 
+var activeFrame = ''
+var playingAnimation = false
+var tick = 1
+
 var animationFrames = {}
 var allFramesSelected = false
 
@@ -49,7 +53,9 @@ $(document).ready(function() {
   })
   $('#viewer-action-target').click(function(event) {
     event.stopPropagation()
-    if (Object.keys(animationFrames).indexOf(activeModel) >= 0) {
+    if (Object.keys(animationFrames).indexOf(activeFrame) >= 0) {
+      viewer.lookAt(activeFrame)
+    } else if (Object.keys(animationFrames).indexOf(activeModel) >= 0) {
       viewer.lookAt(activeModel)
     }
   })
@@ -80,9 +86,25 @@ $(document).ready(function() {
     activeModel = ''
   })
 
+  $('#timeline-option-play-button').click(function(event) {
+    event.stopPropagation()
+    var button = $(this)
+    if (playingAnimation) {
+      playingAnimation = false
+      button.html('<svg><use xlink:href="#svg-play">')
+      button.attr('title', 'Play')
+    } else {
+      playingAnimation = true
+      button.html('<svg><use xlink:href="#svg-pause">')
+      button.attr('title', 'Pause')
+      animateTimeline()
+    }
+  })
   $('#timeline-option-delete-all').click(function(event) {
     event.stopPropagation()
     $('.timeline-frame-element').remove()
+    playingAnimation = true
+    $('#timeline-option-play-button').click()
   })
 
   $('#overlay').click(function(event) {
@@ -177,3 +199,71 @@ $(document).ready(function() {
   })
 
 })
+
+
+
+function animateTimeline() {
+
+  if (!playingAnimation) {
+    $('.timeline-frame-element.activeFrame').removeClass('activeFrame')
+    viewer.hideAll()
+    if (Object.keys(animationFrames).indexOf(activeModel) >= 0) {
+      $('.frame-element[data-name="' + activeModel + '"]').click()
+    }
+    activeFrame = ''
+    tick = 1
+    return
+  }
+
+  var timelineFrames = []
+
+  $('.timeline-frame-element').each(function() {
+    var frame = $(this)
+    timelineFrames.push({
+      name: frame.attr('data-name'),
+      duration: 1*frame.attr('data-duration'),
+      element: frame
+    })
+  })
+
+  var currentIndex = 0
+  var currentFrameName = ''
+  var currentFrameElement
+
+  for (var i = 0; i < timelineFrames.length; i++) {
+    var frame = timelineFrames[i]
+    var previousIndex = currentIndex
+    currentIndex += frame.duration
+    if (tick > previousIndex && tick <= currentIndex) {
+      currentFrameName = frame.name
+      currentFrameElement = frame.element
+      break
+    }
+  }
+
+  if (currentFrameName == '') {
+    tick = 1
+    if (timelineFrames.length > 0) {
+      currentFrameName = timelineFrames[0].name
+      currentFrameElement = timelineFrames[0].element
+    }
+  }
+
+  if (currentFrameName != '') {
+    $('.timeline-frame-element.activeFrame').removeClass('activeFrame')
+    currentFrameElement.addClass('activeFrame')
+    activeFrame = currentFrameName
+    viewer.hideAll()
+    viewer.show(currentFrameName)
+  } else {
+    playingAnimation = true
+    $('#timeline-option-play-button').click()
+  }
+
+  tick += 1
+
+  window.setTimeout(function() {
+    window.requestAnimationFrame(animateTimeline)
+  }, 50)
+
+}

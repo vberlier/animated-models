@@ -74,6 +74,8 @@ function displayAnimationFrames() {
 
       frameElement.click(function(event) {
         event.stopPropagation()
+        playingAnimation = true
+        $('#timeline-option-play-button').click()
         $('.frame-element.selected').removeClass('selected')
         frameElement.addClass('selected')
         viewer.hideAll()

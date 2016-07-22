@@ -547,13 +547,21 @@ svg.basic { color: #c2c2c2; }
 }
 
 /* options section */
-#timeline-options { border-top: 1px #cfcfcf solid; padding: 0.2em 0.6em; }
+#timeline-options { border-top: 1px #cfcfcf solid; padding-left: 0.7em; }
 
-.timeline-option-element {
-  display: inline-block;
+.timeline-option-element, .timeline-option-element-text {
+  float: left;
   height: 100%;
+  margin: 0 0.7em;
+  font-size: 1.1em;
+}
+.timeline-option-element-text {
+  border-left: 1px #cfcfcf solid;
+  width: auto;
+  padding: 17px 28px;
+}
+.timeline-option-element svg {
   width: 3em;
-  margin: 0 0.5em;
 }
 
 
@@ -596,5 +604,6 @@ svg.basic { color: #c2c2c2; }
 
   #timeline { bottom: 50px; }
   #timeline-options { height: 50px; }
+  .timeline-option-element-text  { padding: 14px 22px; }
 
 }

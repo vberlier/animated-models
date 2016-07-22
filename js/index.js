@@ -81,6 +81,11 @@ $(document).ready(function() {
     activeModel = ''
   })
 
+  $('#timeline-option-delete-all').click(function(event) {
+    event.stopPropagation()
+    $('.timeline-frame-element').remove()
+  })
+
   $('#overlay').click(function(event) {
     event.stopPropagation()
     modal.hide()

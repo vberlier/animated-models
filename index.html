@@ -7,7 +7,7 @@
     <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="css/style.css" charset="utf-8">
 
-    <title>Animated models - Fizzy</title>
+    <title>Minecraft model animator - Fizzy</title>
 
   </head>
   <body>
@@ -277,16 +277,16 @@
       </div>
 
       <!-- overlay & modal -->
-      <div id="overlay" class="hidden">
+      <div id="overlay" class="overlay hidden">
         <div class="relative">
 
-          <div id="modal">
+          <div id="modal" class="modal">
             <div class="relative">
 
-              <div id="modal-body">
+              <div id="modal-body" class="modal-body">
                 <div class="relative">
 
-                  <h2 id="modal-title">
+                  <h2 id="modal-title" class="modal-title">
                     Load resources
                   </h2>
 
@@ -328,7 +328,7 @@
                 </div>
               </div>
 
-              <div id="modal-footer">
+              <div id="modal-footer" class="modal-footer">
                 <div class="relative">
 
                   <div class="modal-footer-element">
@@ -337,6 +337,69 @@
 
                   <div class="modal-footer-element">
                     <button id="modal-load" type="button">Load</button>
+                  </div>
+
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- overlay & modal for export -->
+      <div id="export-overlay" class="overlay hidden">
+        <div class="relative">
+
+          <div id="export-modal" class="modal">
+            <div class="relative">
+
+              <div id="export-modal-body" class="modal-body">
+                <div class="relative">
+
+                  <h2 id="export-modal-title" class="modal-title">
+                    Export animation
+                  </h2>
+
+                  <div id="export-nothing">Nothing to export</div>
+
+                  <div id="export-modal-main" class="hidden">
+                    <div class="relative">
+
+                      <div id="export-modal-labels">
+                        <div class="export-modal-fixed-height">
+                          <label for="export-model-path">Model path</label>
+                        </div>
+                        <div class="export-modal-fixed-height">
+                          <label for="export-texture-path">Texture path</label>
+                        </div>
+                      </div>
+
+                      <div id="export-modal-inputs">
+                        <div class="export-modal-fixed-height">
+                          <input type="text" id="export-model-path" value="block/glass" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+                        </div>
+                        <div class="export-modal-fixed-height">
+                          <input type="text" id="export-texture-path" value="blocks/model" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+              <div id="export-modal-footer" class="modal-footer">
+                <div class="relative">
+
+                  <div class="modal-footer-element">
+                    <button id="export-modal-close" class="basic" type="button">Close</button>
+                  </div>
+
+                  <div class="modal-footer-element">
+                    <button id="export-modal-export" class="hidden" type="button">Export</button>
                   </div>
 
                 </div>
@@ -375,6 +438,9 @@
 
     <!-- modal -->
     <script src="js/modal.js" charset="utf-8"></script>
+
+    <!-- export modal -->
+    <script src="js/exportModal.js" charset="utf-8"></script>
 
     <!-- index -->
     <script src="js/index.js" charset="utf-8"></script>

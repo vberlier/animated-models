@@ -112,7 +112,7 @@ svg.basic { color: #c2c2c2; }
  *  modal & overlay
  *****************************/
 
-#overlay {
+.overlay {
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
   width: auto;
@@ -120,7 +120,7 @@ svg.basic { color: #c2c2c2; }
   background: rgba(0, 0, 0, 0.3);
 }
 
-#modal {
+.modal {
   position: absolute;
   top: 10%;
   left: 0; right: 0;
@@ -135,21 +135,21 @@ svg.basic { color: #c2c2c2; }
 }
 
 /* Sizing */
-#modal-body, #modal-footer {
+.modal-body, .modal-footer {
   position: absolute;
   left: 0; right: 0;
   width: auto;
   box-sizing: border-box;
 }
-#modal-body { top: 0; bottom: 2.6em; height: auto; }
-#modal-footer { height: 2.6em; bottom: 0; }
+.modal-body { top: 0; bottom: 2.6em; height: auto; }
+.modal-footer { height: 2.6em; bottom: 0; }
 
-#modal h2 {
+.modal h2 {
   font-size: 1.4em;
   font-weight: normal;
   margin: 0;
 }
-#modal-loading-section { padding: 32px; font-size: 1.1em; }
+#modal-loading-section, #export-modal-main, #export-nothing { padding: 32px; font-size: 1.1em; }
 .modal-footer-element { float: right; margin-left: 1em; }
 
 #modal-file-count {
@@ -251,6 +251,39 @@ svg.basic { color: #c2c2c2; }
 }
 
 .modal-list-errors ul { margin: 0; }
+
+
+
+/**
+ *  export modal & overlay
+ *****************************/
+
+#export-modal-labels, #export-modal-inputs {
+  display: inline-block;
+}
+.export-modal-fixed-height { height: 4em; }
+
+#export-modal input {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-appearance: button;
+  font-size: 0.9em;
+  font-family: monospace;
+  color: #999;
+  width: 20em;
+  height: 1.2em;
+  margin-left: 1em;
+  padding: 0.5em 0.8em;
+  background: white;
+  border: 1px #cfcfcf solid;
+  box-shadow: 0px 1px 5px -3px rgba(0,0,0,0.4);
+  border-radius: 2px;
+  -webkit-transform: translateY(-0.1em);
+  -ms-transform: translateY(-0.1em);
+  -o-transform: translateY(-0.1em);
+  transform: translateY(-0.1em);
+  overflow: hidden;
+}
 
 
 
@@ -598,8 +631,8 @@ svg.basic { color: #c2c2c2; }
 
   body { font-size: 14px; }
 
-  #modal { width: 620px; height: 420px; padding: 38px; }
-  #modal-loading-section { padding: 22px; }
+  .modal { width: 620px; height: 420px; padding: 38px; }
+  #modal-loading-section, #export-modal-main, #export-nothing { padding: 22px; }
   #modal-input-summary { top: 42px; height: 198px; }
   #modal-input-summary-top-bar { height: 34px; }
   .modal-input-topbar-element { padding: 0.5em 0.9em; }

@@ -37,6 +37,11 @@ $(document).ready(function() {
     $(document).scrollTop(0)
   })
 
+  $('#topbar-export').click(function(event) {
+    event.stopPropagation()
+    exportModal.show()
+  })
+
   $('#frames').click(function(event) {
     event.stopPropagation()
     if (activeModel != '') {
@@ -152,6 +157,26 @@ $(document).ready(function() {
     event.stopPropagation()
     modal.load(this.files)
     this.value = ''
+  })
+
+  $('#export-overlay').click(function(event) {
+    event.stopPropagation()
+    exportModal.hide()
+  })
+  $('#export-modal').click(function(event) {
+    event.stopPropagation()
+  })
+
+  $('#export-modal-close').click(function(event) {
+    event.stopPropagation()
+    exportModal.hide()
+  })
+  $('#export-modal-export').click(function(event) {
+    event.stopPropagation()
+    var modelPath = $('#export-model-path').val()
+    var texturePath = $('#export-texture-path').val()
+    exportModal.export(modelPath, texturePath)
+    exportModal.hide()
   })
 
   $('#timeline-frames').mousewheel(function(event, delta) {

@@ -8,38 +8,41 @@ function getAnimationFrames() {
 
   for (var i = 0; i < modelList.length; i++) {
 
-    var name = modelList[i]
-    var model = models[name]
+    ;(function() {
 
-    if (model.errors.length == 0 && model.contextErrors.length == 0) {
+      var name = modelList[i]
+      var model = models[name]
 
-      var textureNames = Object.keys(model.data.textures)
-      var modeltextures = {}
-      var rawTextureList = []
+      if (model.errors.length == 0 && model.contextErrors.length == 0) {
 
-      for (var j = 0; j < textureNames.length; j++) {
+        var textureNames = Object.keys(model.data.textures)
+        var modeltextures = {}
 
-        var textureReference = textureNames[j]
-        var tmp = model.data.textures[textureReference].split('/')
-        var texturename = tmp[tmp.length-1]
+        for (var j = 0; j < textureNames.length; j++) {
 
-        var texture = textures[texturename + '.png']
+          var textureReference = textureNames[j]
+          var tmp = model.data.textures[textureReference].split('/')
+          var texturename = tmp[tmp.length-1]
 
-        rawTextureList.push({name: texturename, texture: texture.raw})
-        modeltextures[texturename] = {texture: texture.data}
+          var texture = textures[texturename + '.png']
 
+          modeltextures[texturename] = texture.data
+
+        }
+
+        var bundle = bundleTextures(model.data, modeltextures)
+
+        var displayName = name.split('.json')[0]
+
+        frames[displayName] = {
+          model: bundle.model,
+          texture: bundle.texture,
+          threeModel: new JsonModel(displayName, bundle.model, [{name: 'bundle', texture: bundle.texture}])
+        }
 
       }
 
-      var displayName = name.split('.json')[0]
-
-      frames[displayName] = {
-        model: model.data,
-        textures: modeltextures,
-        threeModel: new JsonModel(displayName, model.raw, rawTextureList)
-      }
-
-    }
+    })()
 
   }
 
@@ -142,5 +145,105 @@ function createTimelineFrame(name, duration) {
   })
 
   return timelineFrame
+
+}
+
+
+
+function bundleTextures(baseModel, textures) {
+
+  var model = $.extend(true, {}, baseModel)
+
+  var baseWidth = 16
+  var baseHeight = 16
+
+  var textureSize = 16
+
+  var textureNames = Object.keys(textures)
+
+  textureNames.forEach(function(name, index) {
+    var texture = textures[name]
+    if (texture.width > baseWidth) baseWidth = texture.width
+    if (texture.height > baseHeight) baseHeight = texture.height
+  })
+
+  var totalPixels = baseWidth * baseHeight * textureNames.length
+
+  while (Math.pow(textureSize, 2) < totalPixels)
+    textureSize *= 2
+
+  var canvas = document.createElement('canvas')
+  canvas.setAttribute('width', textureSize)
+  canvas.setAttribute('height', textureSize)
+  var context = canvas.getContext('2d')
+
+  var xPos = 0
+  var yPos = 0
+
+  var texturesMaps = {}
+
+  for (var i = 0; i < textureNames.length; i++) {
+    var name = textureNames[i]
+    var texture = textures[name]
+    context.drawImage(texture, xPos, yPos)
+    texturesMaps[name] = [xPos, yPos, texture.width, texture.height]
+    xPos += baseWidth
+    if (xPos + baseWidth > textureSize) {
+      xPos = 0
+      yPos += baseHeight
+    }
+  }
+
+  for (var e = 0; e < model.elements.length; e++) {
+
+    var element = model.elements[e]
+    if (element.hasOwnProperty('faces')) {
+
+      var sides = Object.keys(element.faces)
+
+      for (var i = 0; i < sides.length; i++) {
+
+        var side = sides[i]
+        var face = element.faces[side]
+
+        var tmp = model.textures[face.texture.substr(1)].split('/')
+        var name = tmp[tmp.length-1]
+
+        if (Object.keys(texturesMaps).indexOf(name) >= 0) {
+
+          var minx = face.uv[0]
+          var miny = face.uv[1]
+          var maxx = face.uv[2]
+          var maxy = face.uv[3]
+
+          var xPos = texturesMaps[name][0]
+          var yPos = texturesMaps[name][1]
+
+          var width = texturesMaps[name][2]
+          var height = texturesMaps[name][3]
+
+          face.uv[0] = (minx * (width/baseWidth) * (baseWidth/16) + xPos) / textureSize * 16
+          face.uv[1] = (miny * (height/baseHeight) * (baseHeight/16) + yPos) / textureSize * 16
+          face.uv[2] = (maxx * (width/baseWidth) * (baseWidth/16) + xPos) / textureSize * 16
+          face.uv[3] = (maxy * (height/baseHeight) * (baseHeight/16) + yPos) / textureSize * 16
+
+        }
+
+        face.texture = '#main'
+
+      }
+
+    }
+
+  }
+
+  model.textures = {
+    main: 'bundle'
+  }
+
+  return {
+    model: JSON.stringify(model),
+    texture: canvas.toDataURL('image/png')
+  }
 
 }

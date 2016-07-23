@@ -40,6 +40,8 @@ $(document).ready(function() {
   $('#topbar-export').click(function(event) {
     event.stopPropagation()
     exportModal.show()
+    playingAnimation = true
+    $('#timeline-option-play-button').click()
   })
 
   $('#frames').click(function(event) {

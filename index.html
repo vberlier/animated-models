@@ -4,7 +4,8 @@
 
     <meta charset="utf-8">
 
-    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css" charset="utf-8">
 
     <title>Minecraft model animator - Fizzy</title>
@@ -145,7 +146,7 @@
 
           <div id="topbar-left">
             <div class="relative">
-              <h1>Minecraft model animator - <a href="#">Fizzy</a></h1>
+              <h1>Json model animator - <a href="#">Fizzy</a></h1>
             </div>
           </div>
 
@@ -359,7 +360,7 @@
                 <div class="relative">
 
                   <h2 id="export-modal-title" class="modal-title">
-                    Export animation
+                    Export model
                   </h2>
 
                   <div id="export-nothing">Nothing to export</div>
@@ -374,6 +375,9 @@
                         <div class="export-modal-fixed-height">
                           <label for="export-texture-path">Texture path</label>
                         </div>
+                        <div class="export-modal-fixed-height">
+                          <label for="export-pack-format">Pack format</label>
+                        </div>
                       </div>
 
                       <div id="export-modal-inputs">
@@ -382,6 +386,9 @@
                         </div>
                         <div class="export-modal-fixed-height">
                           <input type="text" id="export-texture-path" value="blocks/model" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+                        </div>
+                        <div class="export-modal-fixed-height">
+                          <input type="text" id="export-pack-format" value="2" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
                         </div>
                       </div>
 
@@ -421,14 +428,22 @@
     <!-- Mouse wheel -->
     <script src="js/libs/jquery.mousewheel.min.js" charset="utf-8"></script>
 
+    <!-- JSZip -->
+    <script src="js/libs/jszip.min.js" charset="utf-8"></script>
+
 
     <!-- Model viewer -->
     <script src="js/libs/three.min.js" charset="utf-8"></script>
     <script src="js/libs/OrbitControls.js" charset="utf-8"></script>
     <script src="js/libs/ModelViewer.js" charset="utf-8"></script>
 
+
     <!-- proper sorting -->
     <script src="js/libs/alphanum.js" charset="utf-8"></script>
+
+    <!-- File saver -->
+    <script src="js/libs/FileSaver.min.js" charset="utf-8"></script>
+
 
     <!-- check files -->
     <script src="js/checkFiles.js" charset="utf-8"></script>

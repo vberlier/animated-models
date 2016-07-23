@@ -34,9 +34,13 @@ function getAnimationFrames() {
 
         var displayName = name.split('.json')[0]
 
+        var textureElement = new Image()
+        textureElement.src = bundle.texture
+
         frames[displayName] = {
-          model: bundle.model,
-          texture: bundle.texture,
+          model: JSON.parse(bundle.model),
+          texture: textureElement,
+          textureSize: bundle.textureSize,
           threeModel: new JsonModel(displayName, bundle.model, [{name: 'bundle', texture: bundle.texture}])
         }
 
@@ -127,8 +131,8 @@ function createTimelineFrame(name, duration) {
     timelineFrame.remove()
   })
 
-  timelineFrame.find('input').change(function(event) {
-    var input = this.value
+  timelineFrame.find('input').on('change keyup paste click', function(event) {
+    var input = this.value.trim()
     if (input.match(/^\d+$/) && input*1 > 0) {
       timelineFrame.attr('data-duration', input)
       timelineFrame.css('width', input*1 * 7.4 + 'em')
@@ -243,7 +247,8 @@ function bundleTextures(baseModel, textures) {
 
   return {
     model: JSON.stringify(model),
-    texture: canvas.toDataURL('image/png')
+    texture: canvas.toDataURL('image/png'),
+    textureSize: textureSize
   }
 
 }

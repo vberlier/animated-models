@@ -13,6 +13,8 @@ var allFramesSelected = false
 var models = {}
 var textures = {}
 
+var canExport = [ false, false, false ]
+
 $(document).ready(function() {
 
 
@@ -42,6 +44,9 @@ $(document).ready(function() {
     exportModal.show()
     playingAnimation = true
     $('#timeline-option-play-button').click()
+    $('#export-model-path').change()
+    $('#export-texture-path').change()
+    $('#export-pack-format').change()
   })
 
   $('#frames').click(function(event) {
@@ -169,16 +174,67 @@ $(document).ready(function() {
     event.stopPropagation()
   })
 
+  $('#export-model-path').on('change keyup paste click', function(event) {
+    event.stopPropagation()
+    if ($(this).val().trim().match(/^(?!\.)(?!com[0-9]$)(?!con$)(?!lpt[0-9]$)(?!nul$)(?!prn$)[^\|\*\?\\:<>$"]*[^\.\|\*\?\\:<>/$"]+$/) && $(this).val().trim().split('//').length == 1) {
+      canExport[0] = true
+      $(this).removeClass('invalid-input')
+    } else {
+      canExport[0] = false
+      $(this).addClass('invalid-input')
+    }
+    if (canExport[0] && canExport[1] && canExport[2] && $('.timeline-frame-element').length > 0) {
+      $('#export-modal-export').removeClass('hidden')
+    } else {
+      $('#export-modal-export').addClass('hidden')
+    }
+  })
+
+  $('#export-texture-path').on('change keyup paste click', function(event) {
+    event.stopPropagation()
+    if ($(this).val().trim().match(/^(?!\.)(?!com[0-9]$)(?!con$)(?!lpt[0-9]$)(?!nul$)(?!prn$)[^\|\*\?\\:<>$"]*[^\.\|\*\?\\:<>/$"]+$/) && $(this).val().trim().split('//').length == 1) {
+      canExport[1] = true
+      $(this).removeClass('invalid-input')
+    } else {
+      canExport[1] = false
+      $(this).addClass('invalid-input')
+    }
+    if (canExport[0] && canExport[1] && canExport[2] && $('.timeline-frame-element').length > 0) {
+      $('#export-modal-export').removeClass('hidden')
+    } else {
+      $('#export-modal-export').addClass('hidden')
+    }
+  })
+
+  $('#export-pack-format').on('change keyup paste click', function(event) {
+    event.stopPropagation()
+    if ($(this).val().trim().match(/^[12]$/)) {
+      canExport[2] = true
+      $(this).removeClass('invalid-input')
+    } else {
+      canExport[2] = false
+      $(this).addClass('invalid-input')
+    }
+    if (canExport[0] && canExport[1] && canExport[2] && $('.timeline-frame-element').length > 0) {
+      $('#export-modal-export').removeClass('hidden')
+    } else {
+      $('#export-modal-export').addClass('hidden')
+    }
+  })
+
   $('#export-modal-close').click(function(event) {
     event.stopPropagation()
     exportModal.hide()
   })
   $('#export-modal-export').click(function(event) {
     event.stopPropagation()
-    var modelPath = $('#export-model-path').val()
-    var texturePath = $('#export-texture-path').val()
-    exportModal.export(modelPath, texturePath)
-    exportModal.hide()
+    if (canExport[0] && canExport[1] && canExport[2]) {
+      var modelPath = $('#export-model-path').val()
+      var texturePath = $('#export-texture-path').val()
+      var packFormat = $('#export-pack-format').val()
+      exportModal.export(modelPath, texturePath, packFormat)
+      exportModal.hide()
+    }
   })
 
   $('#timeline-frames').mousewheel(function(event, delta) {

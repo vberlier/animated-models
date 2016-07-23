@@ -268,7 +268,7 @@ svg.basic { color: #c2c2c2; }
   vertical-align: middle;
   -webkit-appearance: button;
   font-size: 0.9em;
-  font-family: monospace;
+  font-family: 'Source Code Pro', monospace;
   color: #999;
   width: 20em;
   height: 1.2em;
@@ -283,6 +283,15 @@ svg.basic { color: #c2c2c2; }
   -o-transform: translateY(-0.1em);
   transform: translateY(-0.1em);
   overflow: hidden;
+  -webkit-transition: color 0.14s ease-out, border-color 0.14s ease-out, background-color 0.14s ease-out;
+  -o-transition: color 0.14s ease-out, border-color 0.14s ease-out, background-color 0.14s ease-out;
+  transition: color 0.14s ease-out, border-color 0.14s ease-out, background-color 0.14s ease-out;
+}
+
+#export-modal input.invalid-input {
+  color: #d77d7d;
+  background-color: #fef4f4;
+  border-color: #f09e9e;
 }
 
 
@@ -577,6 +586,9 @@ svg.basic { color: #c2c2c2; }
   border: none;
   color: #afafaf;
   background: rgba(255, 255, 255, 0.4);
+  -webkit-transition: background-color 0.14s ease-out;
+  -o-transition: background-color 0.14s ease-out;
+  transition: background-color 0.14s ease-out;
 }
 .timeline-between {
   display: inline-block;

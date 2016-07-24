@@ -283,15 +283,19 @@ svg.basic { color: #c2c2c2; }
   -o-transform: translateY(-0.1em);
   transform: translateY(-0.1em);
   overflow: hidden;
-  -webkit-transition: color 0.14s ease-out, border-color 0.14s ease-out, background-color 0.14s ease-out;
-  -o-transition: color 0.14s ease-out, border-color 0.14s ease-out, background-color 0.14s ease-out;
-  transition: color 0.14s ease-out, border-color 0.14s ease-out, background-color 0.14s ease-out;
+  -webkit-transition: color 0.14s ease-out, border-color 0.14s ease-out, background-color 0.14s ease-out, box-shadow 0.14s ease-out;
+  -o-transition: color 0.14s ease-out, border-color 0.14s ease-out, background-color 0.14s ease-out, box-shadow 0.14s ease-out;
+  transition: color 0.14s ease-out, border-color 0.14s ease-out, background-color 0.14s ease-out, box-shadow 0.14s ease-out;
 }
 
 #export-modal input.invalid-input {
   color: #d77d7d;
   background-color: #fef4f4;
   border-color: #f09e9e;
+}
+
+#export-modal input:focus {
+  box-shadow: 0px 1px 8px -1.8px rgba(49, 92, 177, 0.4);
 }
 
 

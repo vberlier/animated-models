@@ -6,6 +6,7 @@ var exportModal = {
 
     $('#export-overlay').removeClass('hidden')
     exportModal.reset()
+    $('#export-model-path').focus()
 
   },
 

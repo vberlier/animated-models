@@ -208,7 +208,7 @@ $(document).ready(function() {
 
   $('#export-pack-format').on('change keyup paste click', function(event) {
     event.stopPropagation()
-    if ($(this).val().trim().match(/^[12]$/)) {
+    if ($(this).val().trim().match(/^\d+$/)) {
       canExport[2] = true
       $(this).removeClass('invalid-input')
     } else {

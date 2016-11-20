@@ -174,9 +174,9 @@ $(document).ready(function() {
     event.stopPropagation()
   })
 
-  $('#export-model-path').on('change keyup paste click', function(event) {
+  $('#export-model-path').on('input change keyup paste click', function(event) {
     event.stopPropagation()
-    if ($(this).val().trim().match(/^(?!\.)(?!com[0-9]$)(?!con$)(?!lpt[0-9]$)(?!nul$)(?!prn$)[^\|\*\?\\:<>$"]*[^\.\|\*\?\\:<>/$"]+$/) && $(this).val().trim().split('//').length == 1) {
+    if ($(this).val().trim().match(/^(?!\.)(?!com[0-9]$)(?!con$)(?!lpt[0-9]$)(?!nul$)(?!prn$)[^\|\*\?\\:<>$"]*[^\.\|\*\?\\:<>/$"]+$/) && $(this).val().trim().split('//').length == 1 && (!$(this).val().match(/[A-Z]/) || parseInt($('#export-pack-format').val()) < 3)) {
       canExport[0] = true
       $(this).removeClass('invalid-input')
     } else {
@@ -190,9 +190,9 @@ $(document).ready(function() {
     }
   })
 
-  $('#export-texture-path').on('change keyup paste click', function(event) {
+  $('#export-texture-path').on('input change keyup paste click', function(event) {
     event.stopPropagation()
-    if ($(this).val().trim().match(/^(?!\.)(?!com[0-9]$)(?!con$)(?!lpt[0-9]$)(?!nul$)(?!prn$)[^\|\*\?\\:<>$"]*[^\.\|\*\?\\:<>/$"]+$/) && $(this).val().trim().split('//').length == 1) {
+    if ($(this).val().trim().match(/^(?!\.)(?!com[0-9]$)(?!con$)(?!lpt[0-9]$)(?!nul$)(?!prn$)[^\|\*\?\\:<>$"]*[^\.\|\*\?\\:<>/$"]+$/) && $(this).val().trim().split('//').length == 1 && (!$(this).val().match(/[A-Z]/) || parseInt($('#export-pack-format').val()) < 3)) {
       canExport[1] = true
       $(this).removeClass('invalid-input')
     } else {
@@ -206,7 +206,7 @@ $(document).ready(function() {
     }
   })
 
-  $('#export-pack-format').on('change keyup paste click', function(event) {
+  $('#export-pack-format').on('input change keyup paste click', function(event) {
     event.stopPropagation()
     if ($(this).val().trim().match(/^\d+$/)) {
       canExport[2] = true
@@ -220,6 +220,8 @@ $(document).ready(function() {
     } else {
       $('#export-modal-export').addClass('hidden')
     }
+    $('#export-model-path').change()
+    $('#export-texture-path').change()
   })
 
   $('#export-modal-close').click(function(event) {

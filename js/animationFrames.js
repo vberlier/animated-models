@@ -131,7 +131,7 @@ function createTimelineFrame(name, duration) {
     timelineFrame.remove()
   })
 
-  timelineFrame.find('input').on('change keyup paste click', function(event) {
+  timelineFrame.find('input').on('input change keyup paste click', function(event) {
     var input = this.value.trim()
     if (input.match(/^\d+$/) && input*1 > 0) {
       timelineFrame.attr('data-duration', input)

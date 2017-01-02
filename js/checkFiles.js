@@ -213,10 +213,10 @@ function checkTexture(img) {
   var width = img.width
   var height = img.height
 
-  if (width % 16 != 0)
-    errors.push('Texture width is not a multiple of 16.')
-  if (height % 16 != 0)
-    errors.push('Texture height is not a multiple of 16.')
+  if (width && (width & (width - 1)) !== 0)
+    errors.push('Texture width is not a power of 2.')
+  if (height && (height & (height - 1)) !== 0)
+    errors.push('Texture height is not a power of 2.')
 
   if (height != width)
     errors.push('Texture isn\'t a square, width and height are different.')

@@ -26,8 +26,8 @@ var exportModal = {
       $('#export-modal-export').removeClass('hidden')
       $('#export-nothing').addClass('hidden')
       $('#export-model-path').val('block/glass')
-      $('#export-texture-path').val('blocks/' + $('.timeline-frame-element').attr('data-name').replace(/\s+/g, '').toLowerCase())
-      $('#export-pack-format').val('3')
+      $('#export-texture-path').val('block/' + $('.timeline-frame-element').attr('data-name').replace(/\s+/g, '').toLowerCase())
+      $('#export-pack-format').val('4')
     } else {
       $('#export-modal-main').addClass('hidden')
       $('#export-modal-export').addClass('hidden')
